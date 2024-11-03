@@ -38,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
@@ -52,6 +52,14 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-26T16:14:27.379Z",
               "IsPinned": true
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
@@ -73,7 +81,7 @@
               "RelativeDocumentMoniker": "Window.cs",
               "ToolTip": "D:\\ProgrammingProjects\\SimulationEvolution\\Window.cs",
               "RelativeToolTip": "Window.cs",
-              "ViewState": "AQIAAE0AAAAAAAAAAAAwwLIAAABBAAAA",
+              "ViewState": "AQIAADIAAAAAAAAAAAAwwEAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-26T16:16:47.335Z",
               "EditorCaption": ""
@@ -112,8 +120,7 @@
               "RelativeToolTip": "Simulation.cs",
               "ViewState": "AQIAACcAAAAAAAAAAAAowFcAAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-26T16:14:39.914Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-26T16:14:39.914Z"
             },
             {
               "$type": "Document",

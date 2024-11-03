@@ -63,6 +63,7 @@ namespace SimulationEvolution
                     }
                 }
 
+
                 SetColor(0, 0, 0, 255); // setting black color
 
                 Clear(); // clearing window
