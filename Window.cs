@@ -80,7 +80,6 @@ namespace SimulationEvolution
 
 
 
-
                 // TEXT TEST
 
                 SDL_Color color = new SDL_Color { r = 255, g = 255, b = 255, a = 255 }; // белый цвет текста
