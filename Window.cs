@@ -80,7 +80,7 @@ namespace SimulationEvolution
 
 
 
-
+                // TEXT TEST
 
                 SDL_Color color = new SDL_Color { r = 255, g = 255, b = 255, a = 255 }; // белый цвет текста
                 IntPtr textSurface = TTF_RenderText_Solid(font, "Hello SDL!!!", color); // making surface
@@ -94,7 +94,7 @@ namespace SimulationEvolution
 
                 SDL_RenderCopy(renderer, textTexture, IntPtr.Zero, ref textRect); // copy texture to render
 
-
+                // TEXT TEST
 
 
 
@@ -166,9 +166,6 @@ namespace SimulationEvolution
 
         public Window(string name, int pos_x, int pos_y, int width, int height)
         {
-            TTF_Init();
-
-
             this.name = name;
             this.width = width;
             this.height = height;
@@ -183,6 +180,8 @@ namespace SimulationEvolution
                                         SDL_RendererFlags.SDL_RENDERER_PRESENTVSYNC);
 
             if (renderer == IntPtr.Zero) Console.WriteLine($"There was an issue creating the renderer. {SDL_GetError()}");
+
+            TTF_Init();
 
             running = true;
 

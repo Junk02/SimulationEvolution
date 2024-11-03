@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "m/paPalgaBw=",
+  "dgSpecHash": "kUGjKyIoiKs=",
   "success": true,
-  "projectFilePath": "D:\\ProgrammingProjects\\SImulationEvolution\\SimulationEvolution.csproj",
+  "projectFilePath": "D:\\ProgrammingProjects\\SimulationEvolution\\SimulationEvolution.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Prove\\.nuget\\packages\\sayers.sdl2.core\\1.0.11\\sayers.sdl2.core.1.0.11.nupkg.sha512"
   ],

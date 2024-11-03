@@ -32,3 +32,4 @@ D:\ProgrammingProjects\SImulationEvolution\obj\Debug\net8.0\SImulationEvolution.
 D:\ProgrammingProjects\SImulationEvolution\obj\Debug\net8.0\ref\SImulationEvolution.dll
 D:\ProgrammingProjects\SimulationEvolution\obj\Debug\net8.0\Simulati.206AFCBB.Up2Date
 D:\ProgrammingProjects\SImulationEvolution\obj\Debug\net8.0\SimulationEvolution.csproj.ResolveComReference.cache
+D:\ProgrammingProjects\SimulationEvolution\obj\Debug\net8.0\SimulationEvolution.sourcelink.json
