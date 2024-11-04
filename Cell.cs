@@ -9,7 +9,7 @@ namespace SimulationEvolution
     internal class Cell
     {
         public Entity? entity;
-        public int x; public int y;
+        private int x; private int y;
 
         public Cell(int x, int y)
         {
@@ -32,6 +32,16 @@ namespace SimulationEvolution
         {
             if (entity == null) return true;
             return false;
+        }
+
+        public int GetXPos()
+        {
+            return x;
+        }
+
+        public int GetYPos()
+        {
+            return y;
         }
     }
 }

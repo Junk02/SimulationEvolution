@@ -9,26 +9,32 @@ namespace SimulationEvolution
 {
     internal static class Settings
     {
+       //simulation settings
         public static int cell_x = 110;
         public static int cell_y = 95;
         public static int cell_size = 7;
         public static int max_entity_count;
         public static int x_size;
         public static int y_size;
+        public static Random rnd = new Random();
 
         //entities settings
-        public static int genom_size = 64;
         public static int standart_energy = 100;
-        public static int energy_for_staying = 10;
+        public static int energy_for_staying = 0;
 
+        //console&log settings
         public static Color default_color = Color.Black;
         public static ConsoleColor default_console_color = ConsoleColor.White;
         public static ConsoleColor success_console_color = ConsoleColor.Green;
         public static ConsoleColor warning_console_color = ConsoleColor.Yellow;
         public static ConsoleColor error_console_color = ConsoleColor.Red;
 
-
+        //other
+        public static int TurnWait = 100;
         public static bool fixed_window = true;
+
+        //log settings
+        public static bool log_simulation_turn = false; // if true, will log simulation turn after every cycle
 
         static Settings()
         {

@@ -16,7 +16,7 @@ namespace SimulationEvolution
 
         public Cell[,] map;
         public int entity_count;
-        public Random rnd;
+        private ulong simulation_turn;
 
         public Simulation(Window win)
         {
@@ -26,11 +26,10 @@ namespace SimulationEvolution
                 for (int j = 0; j < cell_y; j++)
                     map[i, j] = new Cell(i, j);
             entity_count = 0;
-            rnd = new Random();
-            GenerateEntities(100);
+            simulation_turn = 0;
         }
 
-        public void MakeTurn()
+        public void MakeTurn() // method which makes one simulation turn
         {
             for (int i = 0; i < cell_x; i++)
                 for (int j = 0; j < cell_y; j++)
@@ -41,9 +40,10 @@ namespace SimulationEvolution
                         if (map[i, j].entity.killed) map[i, j].DeleteEntity(ref entity_count);
                     }
                 }
+            simulation_turn++;
         }
 
-        public void DrawEntities()
+        public void DrawEntities() // method which draws all entities
         {
             for (int i = 0; i < cell_x; i++)
             {
@@ -59,7 +59,7 @@ namespace SimulationEvolution
             win.SetColor(default_color);
         }
 
-        public void DeleteAllEntities()
+        public void DeleteAllEntities() // method which deletes all live entities
         {
             for (int i = 0; i < cell_x; i++)
             {
@@ -72,10 +72,9 @@ namespace SimulationEvolution
                 }
             }
             Log("All entities were successfully deleted", message_color.suc);
-            
         }
 
-        public void GenerateEntities(int count)
+        public void GenerateEntities(int count) // method which randomly generates new entities
         {
             /*
              * The method may work slowly when most of the space is occupied,
@@ -103,6 +102,11 @@ namespace SimulationEvolution
             {
                 Log("Error in \"GenerateEntities\", maybe variable \"count\" is greater then free place", message_color.err);
             }
+        }
+
+        public ulong GetSimulationTurn() // returns simulation_turn
+        {
+            return simulation_turn;
         }
     }
 }

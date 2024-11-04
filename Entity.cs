@@ -12,41 +12,33 @@ namespace SimulationEvolution
     {
         public Color color;
         public int energy;
-        Random rnd;
-        public List<int> genom;
         public Cell cell; // don't forget to change when changing the location
         public bool killed;
 
         public Entity(Cell cell)
         {
-            rnd = new Random();
             color = Color.FromArgb(rnd.Next(0, 256), rnd.Next(0, 256), rnd.Next(0, 256));
-            energy = energy_for_staying;
+            energy = standart_energy;
             this.cell = cell;
             killed = false;
-            genom = new List<int>(genom_size);
-            GenerateGenom();
         }
 
-        public void Action(Simulation sim)
+        public void Action(Simulation sim) // method which make an action, which depends on entity behaviour
         {
-            if (!killed)
-            {
-                energy -= energy_for_staying;
-                if (killed) Die();
-            }
-        }
-
-        public void GenerateGenom()
-        {
-            for (int i = 0; i < genom.Count; i++)
-                genom[i] = rnd.Next(0, genom_size);
+            Check();
+            energy -= energy_for_staying;
+            Check();
         }
 
         public void Die()
         {
             //write other code for organics and other (now it's just for testing)
             killed = true;
+        }
+
+        public void Check() // method which checks if entity still alive and kills it in the other case
+        {
+            if (energy <= 0) Die();
         }
     }
 }

@@ -59,7 +59,20 @@ namespace SimulationEvolution
 
                     else if (e.type == SDL_EventType.SDL_MOUSEBUTTONDOWN) // check mouse position event
                     {
-                        Log(message_color.def, e.motion.x, e.motion.y);
+                        //Log(message_color.def, e.motion.x, e.motion.y);
+                        int x_pos = e.motion.x, y_pos = e.motion.y;
+                        int x_ind = (e.motion.x - 1) / 8, y_ind = (e.motion.y - 1) / 8;
+                        Log($"{x_pos} : {y_pos}");
+                        if (x_pos >= cell_x * (cell_size + 1) + 1 || y_pos > cell_y * (cell_size + 1) + 1 ||
+                           (x_pos - 1) % 8 == 7 || (y_pos - 1) % 8 == 7) Log("Not found", message_color.warn);
+                        else
+                        {
+                            Log((sim.map[x_ind, y_ind].IsFree()).ToString());
+                            if (!sim.map[x_ind, y_ind].IsFree())
+                            {
+                                Log($"Energy: {sim.map[x_ind, y_ind].entity.energy}\nColor: {sim.map[x_ind, y_ind].entity.color}", message_color.suc);
+                            }
+                        }
                     }
                 }
 
@@ -71,6 +84,7 @@ namespace SimulationEvolution
                 SetColor(Color.White);
 
                 // drawing extreme lines
+
                 DrawLine(x_size, 0, x_size, y_size);
                 DrawLine(0, y_size, x_size, y_size);
 
@@ -114,6 +128,9 @@ namespace SimulationEvolution
                 x1 = x; y1 = y;
 
                 if (fixed_window) SetWindowPos(1, 31); // check if window is fixed and move it
+
+                if (log_simulation_turn) Log("Simulation turn: " + sim.GetSimulationTurn());
+                Thread.Sleep(TurnWait);
             }
         }
 
