@@ -32,10 +32,17 @@ namespace SimulationEvolution
         public void Action(Simulation sim) // method which make an action, which depends on entity behaviour
         {
             Check();
+
             if (rnd.Next(1, 3) == 1) Rotate();
             else Move(sim);
+
+            if (!moved)
+            {
+                energy -= energy_for_moving;
+                moved = true;
+            }
+
             Check();
-            moved = true;
         }
 
         public void Die()
@@ -99,6 +106,7 @@ namespace SimulationEvolution
                         energy -= energy_for_moving;
                         cell = sim.map[new_x, new_y];
                         not_exist = true;
+                        moved = true;
                     }
                 }
             }
@@ -106,7 +114,12 @@ namespace SimulationEvolution
 
         public void Rotate()
         {
-            rotation = rnd.Next(0, 8);
+            if (energy >= energy_for_rotating)
+            {
+                rotation = rnd.Next(0, 8);
+                energy -= energy_for_rotating;
+                moved = true;
+            }
         }
     }
 }

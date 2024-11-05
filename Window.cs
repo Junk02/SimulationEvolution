@@ -53,7 +53,7 @@ namespace SimulationEvolution
                         }
                         else if (e.key.keysym.sym == SDL_Keycode.SDLK_d) // generate entities event
                         {
-                            sim.GenerateEntities(100);
+                            sim.GenerateEntities(1000);
                         }
                     }
 
@@ -90,6 +90,7 @@ namespace SimulationEvolution
                 DrawLine(0, y_size, x_size, y_size);
 
                 sim.MakeTurn(); // make simulation turn
+                Log(sim.entity_count.ToString());
                 sim.DrawEntities(); // draw all entities
 
 
@@ -182,11 +183,11 @@ namespace SimulationEvolution
             SDL.SDL_GetWindowPosition(window, out x, out y);
         }
 
-        public Window(string name, int pos_x, int pos_y, int width, int height)
+        public Window(string name, int pos_x, int pos_y/*, int width, int height*/)
         {
             this.name = name;
-            this.width = width;
-            this.height = height;
+            this.width = cell_x * (cell_size + 1) + 2 + free_space_width;
+            this.height = cell_y * (cell_size + 1) + 2 + free_space_height;
             if (pos_x == -1 && pos_y == -1) pos_x = pos_y = SDL_WINDOWPOS_UNDEFINED;
             window = SDL_CreateWindow(name, pos_x, pos_y, width, height, SDL_WindowFlags.SDL_WINDOW_SHOWN);
 
