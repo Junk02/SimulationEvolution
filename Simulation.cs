@@ -32,14 +32,24 @@ namespace SimulationEvolution
         public void MakeTurn() // method which makes one simulation turn
         {
             for (int i = 0; i < cell_x; i++)
+            {
                 for (int j = 0; j < cell_y; j++)
                 {
-                    if (!map[i, j].IsFree())
+                    if (!map[i, j].IsFree() && !map[i, j].entity.moved)
                     {
                         map[i, j].entity.Action(this);
                         if (map[i, j].entity.killed) map[i, j].DeleteEntity(ref entity_count);
+                        else if (map[i, j].entity.not_exist)
+                        {
+                            map[i, j].entity.not_exist = false;
+                            map[i, j].DeleteEntity();
+                        }
                     }
                 }
+            }
+            for (int i = 0; i < cell_x; i++)
+                for (int j = 0; j < cell_y; j++)
+                    if (!map[i, j].IsFree()) map[i, j].entity.moved = false;
             simulation_turn++;
         }
 

@@ -20,7 +20,8 @@ namespace SimulationEvolution
 
         //entities settings
         public static int standart_energy = 100;
-        public static int energy_for_staying = 0;
+        public static int energy_for_staying = 5;
+        public static int energy_for_moving = -10;
 
         //console&log settings
         public static Color default_color = Color.Black;

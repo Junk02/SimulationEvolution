@@ -9,7 +9,8 @@ namespace SimulationEvolution
     internal class Cell
     {
         public Entity? entity;
-        private int x; private int y;
+        public int x { get; private set; }
+        public int y { get; private set; }
 
         public Cell(int x, int y)
         {
@@ -28,20 +29,15 @@ namespace SimulationEvolution
             entity_count--;
         }
 
+        public void DeleteEntity()
+        {
+            entity = null;
+        }
+
         public bool IsFree()
         {
             if (entity == null) return true;
             return false;
-        }
-
-        public int GetXPos()
-        {
-            return x;
-        }
-
-        public int GetYPos()
-        {
-            return y;
         }
     }
 }

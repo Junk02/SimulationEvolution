@@ -53,7 +53,7 @@ namespace SimulationEvolution
                         }
                         else if (e.key.keysym.sym == SDL_Keycode.SDLK_d) // generate entities event
                         {
-                            sim.GenerateEntities(5000);
+                            sim.GenerateEntities(100);
                         }
                     }
 
@@ -70,7 +70,8 @@ namespace SimulationEvolution
                             Log((sim.map[x_ind, y_ind].IsFree()).ToString());
                             if (!sim.map[x_ind, y_ind].IsFree())
                             {
-                                Log($"Energy: {sim.map[x_ind, y_ind].entity.energy}\nColor: {sim.map[x_ind, y_ind].entity.color}", message_color.suc);
+                                Log($"Energy: {sim.map[x_ind, y_ind].entity.energy}\nColor: {sim.map[x_ind, y_ind].entity.color}" +
+                                    $"\nRotation: {sim.map[x_ind, y_ind].entity.rotation}", message_color.suc);
                             }
                         }
                     }
