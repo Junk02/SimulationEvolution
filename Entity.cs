@@ -32,7 +32,7 @@ namespace SimulationEvolution
         public void Action(Simulation sim) // method which make an action, which depends on entity behaviour
         {
             Check();
-            if (rnd.Next(1, 3) == 1) energy -= energy_for_staying;
+            if (rnd.Next(1, 3) == 1) Rotate();
             else Move(sim);
             Check();
             moved = true;
@@ -102,6 +102,11 @@ namespace SimulationEvolution
                     }
                 }
             }
+        } // method which use rotation and move entity
+
+        public void Rotate()
+        {
+            rotation = rnd.Next(0, 8);
         }
     }
 }

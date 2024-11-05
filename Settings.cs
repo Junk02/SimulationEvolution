@@ -31,7 +31,7 @@ namespace SimulationEvolution
         public static ConsoleColor error_console_color = ConsoleColor.Red;
 
         //other
-        public static int TurnWait = 100;
+        public static int TurnWait = 0;
         public static bool fixed_window = true;
 
         //log settings
