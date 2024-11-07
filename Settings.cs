@@ -18,11 +18,17 @@ namespace SimulationEvolution
         public static int y_size;
         public static Random rnd = new Random();
 
+        public static bool infinite_entity_energy = true; // if true the energy of the entities can be as large as possible
+            public static int max_entity_energy = 100; // this variable is used if the maximum amount of energy of the entity is not infinite
+
+
         //entities settings
         public static int standart_energy = 100;
         public static int energy_for_staying = 5;
-        public static int energy_for_moving = -2;
-        public static int energy_for_rotating = 7;
+        public static int energy_for_moving = -4;
+        public static int energy_for_rotating = 5;
+        public static int energy_for_photosynthesis = 1;
+
 
         //console&log settings
         public static Color default_color = Color.Black;
@@ -31,16 +37,20 @@ namespace SimulationEvolution
         public static ConsoleColor warning_console_color = ConsoleColor.Yellow;
         public static ConsoleColor error_console_color = ConsoleColor.Red;
 
+
         //window settings
         public static int free_space_width = 450;
         public static int free_space_height = 100;
 
-        //other
-        public static int TurnWait = 0;
-        public static bool fixed_window = true;
 
         //log settings
         public static bool log_simulation_turn = false; // if true, will log simulation turn after every cycle
+
+
+        //other
+        public static int TurnWait = 100;
+        public static bool fixed_window = true;
+
 
         static Settings()
         {

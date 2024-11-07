@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static SimulationEvolution.Settings;
 
 namespace SimulationEvolution
 {
@@ -12,10 +13,13 @@ namespace SimulationEvolution
         public int x { get; private set; }
         public int y { get; private set; }
 
+        public int energy_for_photo;
+
         public Cell(int x, int y)
         {
             this.x = x;
             this.y = y;
+            energy_for_photo = energy_for_photosynthesis;
         }
 
         public void AddEntity()

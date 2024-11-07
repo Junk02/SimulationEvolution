@@ -90,7 +90,6 @@ namespace SimulationEvolution
                 DrawLine(0, y_size, x_size, y_size);
 
                 sim.MakeTurn(); // make simulation turn
-                Log(sim.entity_count.ToString());
                 sim.DrawEntities(); // draw all entities
 
 
@@ -99,7 +98,7 @@ namespace SimulationEvolution
                 // TEXT TEST
 
                 SDL_Color color = new SDL_Color { r = 255, g = 255, b = 255, a = 255 }; // белый цвет текста
-                IntPtr textSurface = TTF_RenderText_Solid(font, "Hello SDL!!!", color); // making surface
+                IntPtr textSurface = TTF_RenderText_Solid(font, $"Population: {sim.entity_count}", color); // making surface
                 IntPtr textTexture = SDL_CreateTextureFromSurface(renderer, textSurface); // making texture from surface
                 SDL_Rect textRect;
                 uint forma;
@@ -183,7 +182,7 @@ namespace SimulationEvolution
             SDL.SDL_GetWindowPosition(window, out x, out y);
         }
 
-        public Window(string name, int pos_x, int pos_y/*, int width, int height*/)
+        public Window(string name, int pos_x, int pos_y)
         {
             this.name = name;
             this.width = cell_x * (cell_size + 1) + 2 + free_space_width;

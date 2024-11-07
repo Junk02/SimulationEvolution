@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static SimulationEvolution.Settings;
+using static SimulationEvolution.Logging;
 
 namespace SimulationEvolution
 {
@@ -33,8 +34,10 @@ namespace SimulationEvolution
         {
             Check();
 
-            if (rnd.Next(1, 3) == 1) Rotate();
-            else Move(sim);
+            int choice = rnd.Next(1, 4);
+            if (choice == 1) Move(sim);
+            else if (choice == 2) Rotate();
+            else if (choice == 3) Photosynthesis();
 
             if (!moved)
             {
@@ -120,6 +123,16 @@ namespace SimulationEvolution
                 energy -= energy_for_rotating;
                 moved = true;
             }
+        }
+
+        public void Photosynthesis()
+        {
+            energy += cell.energy_for_photo;
+            if (!infinite_entity_energy && energy > max_entity_energy)
+            {
+                energy = max_entity_energy;
+            }
+            moved = true;
         }
     }
 }
