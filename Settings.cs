@@ -59,6 +59,7 @@ namespace SimulationEvolution
         public static int min_TurnWait = 0;
         public static int change_TurnWait = 100;
         public static bool fixed_window = true;
+        public static bool is_simulation_on_pause = false;
 
         public enum rendering_mode
         {

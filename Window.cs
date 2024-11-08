@@ -43,17 +43,21 @@ namespace SimulationEvolution
 
                     else if (e.type == SDL_EventType.SDL_KEYDOWN) // group of keydown events
                     {
-                        if (e.key.keysym.sym == SDL_Keycode.SDLK_a) // fixed window event
+                        if (e.key.keysym.sym == SDL_Keycode.SDLK_a) // fixed window event [A]
                         {
                             fixed_window = !fixed_window;
                         }
-                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_s) // delete all entities event
+                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_s) // delete all entities event [S]
                         {
                             sim.DeleteAllEntities();
                         }
-                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_d) // generate entities event
+                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_d) // generate entities event [D]
                         {
                             sim.GenerateEntities(1000);
+                        }
+                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_SPACE) // generate entities event
+                        {
+                            is_simulation_on_pause = !is_simulation_on_pause;
                         }
                         else if (e.key.keysym.sym == SDL_Keycode.SDLK_DOWN)
                         {
@@ -101,7 +105,7 @@ namespace SimulationEvolution
                 DrawLine(x_size, 0, x_size, y_size);
                 DrawLine(0, y_size, x_size, y_size);
 
-                sim.MakeTurn(); // make simulation turn
+                if (!is_simulation_on_pause) sim.MakeTurn(); // make simulation turn
                 sim.DrawEntities(); // draw all entities
 
 
