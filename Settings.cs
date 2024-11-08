@@ -54,13 +54,28 @@ namespace SimulationEvolution
 
 
         //other
-        public static int TurnWait = 0;
+        public static int TurnWait = 100;
+        public static int max_TurnWait = 10000;
+        public static int min_TurnWait = 0;
+        public static int change_TurnWait = 100;
         public static bool fixed_window = true;
 
         public enum rendering_mode
         {
             entity_color = 1,
             organics = 0,
+        }
+
+        public static void ChangeTurnWait(bool flag)
+        {
+            if (!flag)
+            {
+                if (TurnWait > min_TurnWait) TurnWait -= change_TurnWait;
+            }
+            else
+            {
+                if (TurnWait < max_TurnWait) TurnWait += change_TurnWait;
+            }
         }
 
         static Settings()

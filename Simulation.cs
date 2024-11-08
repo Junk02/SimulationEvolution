@@ -37,11 +37,12 @@ namespace SimulationEvolution
                 {
                     if (!map[i, j].IsFree() && !map[i, j].entity.moved)
                     {
-                        map[i, j].entity.Action(this);
-                        if (map[i, j].entity.killed) map[i, j].DeleteEntity(ref entity_count);
-                        else if (map[i, j].entity.not_exist)
+                        Entity ent = map[i, j].entity;
+                        ent.Action(this);
+                        if (ent.killed) ent.cell.DeleteEntity(ref entity_count);
+                        else if (ent.not_exist)
                         {
-                            map[i, j].entity.not_exist = false;
+                            ent.not_exist = false;
                             map[i, j].DeleteEntity();
                         }
                     }

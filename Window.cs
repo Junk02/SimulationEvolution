@@ -55,6 +55,14 @@ namespace SimulationEvolution
                         {
                             sim.GenerateEntities(1000);
                         }
+                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_DOWN)
+                        {
+                            ChangeTurnWait(false);
+                        }
+                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_UP)
+                        {
+                            ChangeTurnWait(true);
+                        }
                     }
 
                     else if (e.type == SDL_EventType.SDL_MOUSEBUTTONDOWN) // check mouse position event
