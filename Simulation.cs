@@ -40,7 +40,7 @@ namespace SimulationEvolution
                         Entity ent = map[i, j].entity;
                         ent.Action(this);
                         if (ent.killed) ent.cell.DeleteEntity(ref entity_count);
-                        else if (ent.not_exist)
+                        if (ent.not_exist)
                         {
                             ent.not_exist = false;
                             map[i, j].DeleteEntity();
@@ -104,9 +104,8 @@ namespace SimulationEvolution
                         y = rnd.Next(0, cell_y);
                     }
                     while (map[x, y].entity != null);
-                    map[x, y].AddEntity();
+                    map[x, y].AddEntity(ref entity_count);
                 }
-                entity_count += count;
                 Log($"{count} entities were successfully added", message_color.suc);
             }
             else

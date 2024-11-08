@@ -23,12 +23,13 @@ namespace SimulationEvolution
 
 
         //entities settings
-        public static int standart_energy = 100;
+        public static int standart_energy = 100; 
         public static int organics_after_dying = 10;
-        public static int energy_for_staying = 5;
-        public static int energy_for_moving = -4;
-        public static int energy_for_rotating = 5;
-        public static int energy_for_photosynthesis = 1;
+        public static int energy_for_staying = 1;
+        public static int energy_for_moving = 3;
+        public static int energy_for_rotating = 2;
+        public static int energy_for_photosynthesis = 8;
+        public static int energy_for_reproduction = 60;
 
 
         //cells settings

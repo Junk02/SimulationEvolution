@@ -24,9 +24,13 @@ namespace SimulationEvolution
             energy_for_photo = energy_for_photosynthesis;
         }
 
-        public void AddEntity()
+        public void AddEntity(ref int entity_count)
         {
-            if (entity == null) entity = new Entity(this);
+            if (entity == null)
+            {
+                entity = new Entity(this);
+                entity_count++;
+            }
         }
 
         public void DeleteEntity(ref int entity_count)

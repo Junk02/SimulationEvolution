@@ -34,10 +34,11 @@ namespace SimulationEvolution
         {
             Check();
 
-            int choice = rnd.Next(1, 4);
+            int choice = rnd.Next(1, 5);
             if (choice == 1) Move(sim);
             else if (choice == 2) Rotate();
             else if (choice == 3) Photosynthesis();
+            else if (choice == 4) Reproduction(sim);
 
             if (!moved)
             {
@@ -98,6 +99,25 @@ namespace SimulationEvolution
                 energy = max_entity_energy;
             }
             moved = true;
+        }
+
+        public void Reproduction(Simulation sim)
+        {
+            if (energy >= energy_for_reproduction)
+            {
+                Cell reproduction_cell = sim.GetCellByRotation(cell.x, cell.y, rotation);
+                if (reproduction_cell != null)
+                {
+                    if (reproduction_cell.IsFree())
+                    {
+                        energy /= 2;
+                        reproduction_cell.AddEntity(ref sim.entity_count);
+                        reproduction_cell.entity.energy = this.energy;
+                        reproduction_cell.entity.color = this.color;
+                        moved = true;
+                    }
+                }
+            }
         }
     }
 }
