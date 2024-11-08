@@ -118,6 +118,45 @@ namespace SimulationEvolution
         {
             return simulation_turn;
         }
+
+        public Cell GetCellByRotation(int x, int y, int rotation)
+        {
+            int new_x = x, new_y = y;
+            switch (rotation)
+            {
+                case 0:
+                    new_x -= 1;
+                    new_y -= 1;
+                    break;
+                case 1:
+                    new_y -= 1;
+                    break;
+                case 2:
+                    new_x += 1;
+                    new_y -= 1;
+                    break;
+                case 3:
+                    new_x += 1;
+                    break;
+                case 4:
+                    new_x += 1;
+                    new_y += 1;
+                    break;
+                case 5:
+                    new_y += 1;
+                    break;
+                case 6:
+                    new_x -= 1;
+                    new_y += 1;
+                    break;
+                case 7:
+                    new_x -= 1;
+                    break;
+            }
+
+            if (0 <= new_x && new_x < cell_x && 0 <= new_y && new_y < cell_y) return map[new_x, new_y];
+            return null!;
+        }
     }
 }
 

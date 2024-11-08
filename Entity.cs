@@ -59,61 +59,25 @@ namespace SimulationEvolution
             if (energy <= 0) Die();
         }
 
-        public void Move(Simulation sim)
+        public void Move(Simulation sim) // method which use rotation and move entity
         {
             if (energy >= energy_for_moving)
             {
-                int new_x = cell.x, new_y = cell.y;
-                if (rotation == 0)
-                {
-                    new_x = cell.x - 1;
-                    new_y = cell.y - 1;
-                }
-                else if (rotation == 1)
-                {
-                    new_y = cell.y - 1;
-                }
-                else if (rotation == 2)
-                {
-                    new_x = cell.x + 1;
-                    new_y = cell.y - 1;
-                }
-                else if (rotation == 3)
-                {
-                    new_x = cell.x + 1;
-                }
-                else if (rotation == 4)
-                {
-                    new_x = cell.x + 1;
-                    new_y = cell.y + 1;
-                }
-                else if (rotation == 5)
-                {
-                    new_y = cell.y + 1;
-                }
-                else if (rotation == 6)
-                {
-                    new_x = cell.x - 1;
-                    new_y = cell.y + 1;
-                }
-                else if (rotation == 7)
-                {
-                    new_x = cell.x - 1;
-                }
+                Cell moving_cell = sim.GetCellByRotation(cell.x, cell.y, rotation);
 
-                if (0 <= new_x && new_x < cell_x && 0 <= new_y && new_y < cell_y)
+                if (moving_cell != null)
                 {
-                    if (sim.map[new_x, new_y].IsFree())
+                    if (moving_cell.IsFree())
                     {
-                        sim.map[new_x, new_y].entity = this;
+                        moving_cell.entity = this;
                         energy -= energy_for_moving;
-                        cell = sim.map[new_x, new_y];
+                        cell = moving_cell;
                         not_exist = true;
                         moved = true;
                     }
                 }
             }
-        } // method which use rotation and move entity
+        }
 
         public void Rotate()
         {

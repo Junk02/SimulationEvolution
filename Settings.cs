@@ -48,7 +48,7 @@ namespace SimulationEvolution
 
 
         //other
-        public static int TurnWait = 100;
+        public static int TurnWait = 0;
         public static bool fixed_window = true;
 
 
