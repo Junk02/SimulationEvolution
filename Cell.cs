@@ -14,11 +14,13 @@ namespace SimulationEvolution
         public int y { get; private set; }
 
         public int energy_for_photo;
+        public int organics;
 
         public Cell(int x, int y)
         {
             this.x = x;
             this.y = y;
+            organics = 0;
             energy_for_photo = energy_for_photosynthesis;
         }
 
@@ -42,6 +44,15 @@ namespace SimulationEvolution
         {
             if (entity == null) return true;
             return false;
+        }
+
+        public void AddOrganics(int amount)
+        {
+            organics += amount;
+            if (!is_organics_infinite && organics > max_organics)
+            {
+                organics = max_organics;
+            }
         }
     }
 }

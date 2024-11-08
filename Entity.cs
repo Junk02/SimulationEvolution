@@ -52,6 +52,7 @@ namespace SimulationEvolution
         {
             //write other code for organics and other (now it's just for testing)
             killed = true;
+            cell.AddOrganics(organics_after_dying);
         }
 
         public void Check() // method which checks if entity still alive and kills it in the other case
@@ -92,7 +93,7 @@ namespace SimulationEvolution
         public void Photosynthesis()
         {
             energy += cell.energy_for_photo;
-            if (!infinite_entity_energy && energy > max_entity_energy)
+            if (!is_entity_energy_infinite && energy > max_entity_energy)
             {
                 energy = max_entity_energy;
             }

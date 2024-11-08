@@ -73,6 +73,10 @@ namespace SimulationEvolution
                                 Log($"Energy: {sim.map[x_ind, y_ind].entity.energy}\nColor: {sim.map[x_ind, y_ind].entity.color}" +
                                     $"\nRotation: {sim.map[x_ind, y_ind].entity.rotation}", message_color.suc);
                             }
+                            else
+                            {
+                                Log($"Organics: {sim.map[x_ind, y_ind].organics}");
+                            }
                         }
                     }
                 }

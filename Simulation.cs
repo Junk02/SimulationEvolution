@@ -61,7 +61,7 @@ namespace SimulationEvolution
                 {
                     if (!map[i, j].IsFree())
                     {
-                        win.SetColor(map[i, j].entity.color);
+                        if (((int)rendering_mode.entity_color) == 1) win.SetColor(map[i, j].entity.color);
                         win.DrawRectangle(i * (cell_size + 1) + 1, j * (cell_size + 1) + 1, cell_size);
                     }
                 }

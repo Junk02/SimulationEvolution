@@ -18,16 +18,22 @@ namespace SimulationEvolution
         public static int y_size;
         public static Random rnd = new Random();
 
-        public static bool infinite_entity_energy = true; // if true the energy of the entities can be as large as possible
+        public static bool is_entity_energy_infinite = true; // if true the energy of the entities can be as large as possible
             public static int max_entity_energy = 100; // this variable is used if the maximum amount of energy of the entity is not infinite
 
 
         //entities settings
         public static int standart_energy = 100;
+        public static int organics_after_dying = 10;
         public static int energy_for_staying = 5;
         public static int energy_for_moving = -4;
         public static int energy_for_rotating = 5;
         public static int energy_for_photosynthesis = 1;
+
+
+        //cells settings
+        public static bool is_organics_infinite = false; // if true the organics of the cell can be as large as possible
+            public static int max_organics = 100; // this variable is used if the maximum amount of organics of the cell is not infinite
 
 
         //console&log settings
@@ -51,6 +57,11 @@ namespace SimulationEvolution
         public static int TurnWait = 0;
         public static bool fixed_window = true;
 
+        public enum rendering_mode
+        {
+            entity_color = 1,
+            organics = 0,
+        }
 
         static Settings()
         {
