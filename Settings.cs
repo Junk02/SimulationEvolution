@@ -9,7 +9,7 @@ namespace SimulationEvolution
 {
     internal static class Settings
     {
-       //simulation settings
+        //simulation settings
         public static int cell_x = 200;
         public static int cell_y = 150;
         public static int cell_size = 7;
@@ -18,23 +18,25 @@ namespace SimulationEvolution
         public static int y_size;
         public static Random rnd = new Random();
 
-        public static bool is_entity_energy_infinite = true; // if true the energy of the entities can be as large as possible
-            public static int max_entity_energy = 100; // this variable is used if the maximum amount of energy of the entity is not infinite
+        public static bool is_entity_energy_infinite = false; // if true the energy of the entities can be as large as possible
+        public static int max_entity_energy = 100; // this variable is used if the maximum amount of energy of the entity is not infinite
 
 
         //entities settings
-        public static int standart_energy = 100; 
+        public static int standart_energy = 100;
         public static int organics_after_dying = 10;
         public static int energy_for_staying = 1;
         public static int energy_for_moving = 3;
-        public static int energy_for_rotating = 2;
-        public static int energy_for_photosynthesis = 8;
+        public static int energy_for_rotating = 1;
+        public static int energy_for_photosynthesis = 9;
         public static int energy_for_reproduction = 60;
+        public static int energy_for_bite = 1;
+        public static int bite_power = 100;
 
 
         //cells settings
         public static bool is_organics_infinite = false; // if true the organics of the cell can be as large as possible
-            public static int max_organics = 100; // this variable is used if the maximum amount of organics of the cell is not infinite
+        public static int max_organics = 100; // this variable is used if the maximum amount of organics of the cell is not infinite
 
 
         //console&log settings
@@ -62,11 +64,11 @@ namespace SimulationEvolution
         public static bool fixed_window = true;
         public static bool is_simulation_on_pause = false;
 
-        public enum rendering_mode
+        public static List<int> rendering_mode = new List<int>
         {
-            entity_color = 1,
-            organics = 0,
-        }
+            0, //entity_color
+            1, //organics
+        };
 
         public static void ChangeTurnWait(bool flag)
         {

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static SimulationEvolution.Settings;
 using static SimulationEvolution.Logging;
+using System.Xml;
 
 namespace SimulationEvolution
 {
@@ -56,17 +57,32 @@ namespace SimulationEvolution
 
         public void DrawEntities() // method which draws all entities
         {
-            for (int i = 0; i < cell_x; i++)
+            if (rendering_mode[0] == 1) // entity_color_mode
             {
-                for (int j = 0; j < cell_y; j++)
+                for (int i = 0; i < cell_x; i++)
                 {
-                    if (!map[i, j].IsFree())
+                    for (int j = 0; j < cell_y; j++)
                     {
-                        if (((int)rendering_mode.entity_color) == 1) win.SetColor(map[i, j].entity.color);
+                        if (!map[i, j].IsFree())
+                        {
+                            win.SetColor(map[i, j].entity.color);
+                            win.DrawRectangle(i * (cell_size + 1) + 1, j * (cell_size + 1) + 1, cell_size);
+                        }
+                    }
+                }
+            }
+            else if (rendering_mode[1] == 1) //organics_mode
+            {
+                for (int i = 0; i < cell_x; i++)
+                {
+                    for (int j = 0; j < cell_y; j++)
+                    {
+                        win.SetColor((byte)(((double)(map[i, j].organics) / (double)(max_organics)) * 255), 0, 0);
                         win.DrawRectangle(i * (cell_size + 1) + 1, j * (cell_size + 1) + 1, cell_size);
                     }
                 }
             }
+            
             win.SetColor(default_color);
         }
 

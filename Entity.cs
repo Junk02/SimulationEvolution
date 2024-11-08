@@ -34,11 +34,12 @@ namespace SimulationEvolution
         {
             Check();
 
-            int choice = rnd.Next(1, 5);
+            int choice = rnd.Next(1, 6);
             if (choice == 1) Move(sim);
             else if (choice == 2) Rotate();
             else if (choice == 3) Photosynthesis();
             else if (choice == 4) Reproduction(sim);
+            else if (choice == 5) Bite(sim);
 
             if (!moved)
             {
@@ -47,6 +48,15 @@ namespace SimulationEvolution
             }
 
             Check();
+        }
+
+        public void GetEnergy(int amount)
+        {
+            energy += amount;
+            if (!is_entity_energy_infinite && energy > max_entity_energy)
+            {
+                energy = max_entity_energy;
+            }
         }
 
         public void Die()
@@ -93,11 +103,7 @@ namespace SimulationEvolution
 
         public void Photosynthesis()
         {
-            energy += cell.energy_for_photo;
-            if (!is_entity_energy_infinite && energy > max_entity_energy)
-            {
-                energy = max_entity_energy;
-            }
+            GetEnergy(cell.energy_for_photo);
             moved = true;
         }
 
@@ -116,6 +122,40 @@ namespace SimulationEvolution
                         reproduction_cell.entity.color = this.color;
                         moved = true;
                     }
+                }
+            }
+        }
+
+        public void Bite(Simulation sim)
+        {
+            if (energy >= energy_for_bite)
+            {
+                Cell bite_cell = sim.GetCellByRotation(cell.x, cell.y, rotation);
+                if (bite_cell != null)
+                {
+                    if (!bite_cell.IsFree())
+                    {
+                        if (bite_cell.entity.energy > bite_power)
+                        {
+                            GetEnergy(bite_power);
+                            bite_cell.entity.energy -= bite_power;
+                        }
+                        else
+                        {
+                            GetEnergy(bite_cell.entity.energy);
+                            bite_cell.entity.energy -= bite_power;
+                            bite_cell.entity.Check();
+                            if (bite_cell.entity.killed)
+                            {
+                                bite_cell.DeleteEntity(ref sim.entity_count);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        energy -= energy_for_bite;
+                    }
+                    moved = true;
                 }
             }
         }
