@@ -50,6 +50,7 @@ namespace SimulationEvolution
         //WINDOW SETTINGS
         public static int free_space_width = 450;
         public static int free_space_height = 100;
+        public static IntPtr font;
 
 
         //LOG SETTINGS
@@ -57,7 +58,7 @@ namespace SimulationEvolution
 
 
         //OTHER
-        public static int TurnWait = 100;
+        public static int TurnWait = 0;
         public static int max_TurnWait = 10000;
         public static int min_TurnWait = 0;
         public static int change_TurnWait = 100;

@@ -28,7 +28,7 @@ namespace SimulationEvolution
 
         int x1 = 0, y1 = 0; // REMOVE AFTER CHECK
 
-        IntPtr font;
+
 
         public void Cycle() // method which check events, draw graphics, make simulation turn, etc.
         {
@@ -121,19 +121,13 @@ namespace SimulationEvolution
 
                 // TEXT TEST
 
-                SDL_Color color = new SDL_Color { r = 255, g = 255, b = 255, a = 255 }; // белый цвет текста
-                IntPtr textSurface = TTF_RenderText_Solid(font, $"Population: {sim.entity_count}", color); // making surface
-                IntPtr textTexture = SDL_CreateTextureFromSurface(renderer, textSurface); // making texture from surface
-                SDL_Rect textRect;
-                uint forma;
-                int acss;
-                SDL_QueryTexture(textTexture, out forma, out acss, out textRect.w, out textRect.h); // getting texture size
-                textRect.x = x_size + 10;
-                textRect.y = -0;
+                Text population_text = new Text(255, 255, 255, $"Population: {sim.entity_count}", renderer, x_size + 10, 0);
+                Text time_text = new Text(255, 255, 255, $"Time: {sim.GetSimulationTurn()}", renderer, x_size + 10, 20);
 
-                SDL_RenderCopy(renderer, textTexture, IntPtr.Zero, ref textRect); // copy texture to render
+                population_text.Render();
+                time_text.Render();
 
-                // TEXT TEST
+
 
 
 
@@ -141,20 +135,12 @@ namespace SimulationEvolution
 
 
 
-                SDL_FreeSurface(textSurface);
-                SDL_DestroyTexture(textTexture);
+                
 
 
-
-                //checking window position
-                int x = 0, y = 0;
-                GetWindowPos(ref x, ref y);
-                if (x1 != x || y1 != y) Log($"x : {x} | y : {y}");
-                x1 = x; y1 = y;
 
                 if (fixed_window) SetWindowPos(1, 31); // check if window is fixed and move it
 
-                if (log_simulation_turn) Log("Simulation turn: " + sim.GetSimulationTurn());
                 Thread.Sleep(TurnWait);
             }
         }

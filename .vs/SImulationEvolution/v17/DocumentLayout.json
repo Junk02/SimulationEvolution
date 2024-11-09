@@ -7,12 +7,8 @@
       "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:window.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\simulation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:simulation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\text.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:text.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\entity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -23,12 +19,20 @@
       "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:cell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\logging.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:logging.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\simulation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:simulation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\logging.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:logging.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,17 +42,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Settings.cs",
               "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Settings.cs",
               "RelativeDocumentMoniker": "Settings.cs",
               "ToolTip": "D:\\ProgrammingProjects\\SimulationEvolution\\Settings.cs",
               "RelativeToolTip": "Settings.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAArAAAA",
+              "ViewState": "AQIAACkAAAAAAAAAAAAQwDwAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-26T16:14:27.379Z",
               "IsPinned": true,
@@ -56,7 +60,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Logging.cs",
               "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Logging.cs",
               "RelativeDocumentMoniker": "Logging.cs",
@@ -65,7 +69,19 @@
               "ViewState": "AQIAABsAAAAAAAAAAAAowBEAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-07T12:08:12.595Z",
-              "IsPinned": true,
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Text.cs",
+              "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Text.cs",
+              "RelativeDocumentMoniker": "Text.cs",
+              "ToolTip": "D:\\ProgrammingProjects\\SimulationEvolution\\Text.cs",
+              "RelativeToolTip": "Text.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAIA9wDwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-09T16:07:50.078Z",
               "EditorCaption": ""
             },
             {
@@ -84,14 +100,14 @@
               "RelativeDocumentMoniker": "Window.cs",
               "ToolTip": "D:\\ProgrammingProjects\\SimulationEvolution\\Window.cs",
               "RelativeToolTip": "Window.cs",
-              "ViewState": "AQIAAKsAAAAAAAAAAAAwwOwAAAAAAAAA",
+              "ViewState": "AQIAAHEAAAAAAAAAAAAwwJAAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-26T16:16:47.335Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "Cell.cs",
               "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Cell.cs",
               "RelativeDocumentMoniker": "Cell.cs",
@@ -104,7 +120,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Entity.cs",
               "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Entity.cs",
               "RelativeDocumentMoniker": "Entity.cs",
@@ -117,7 +133,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Simulation.cs",
               "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Simulation.cs",
               "RelativeDocumentMoniker": "Simulation.cs",
@@ -138,7 +154,8 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAA1AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-26T16:13:35.701Z"
+              "WhenOpened": "2024-06-26T16:13:35.701Z",
+              "EditorCaption": ""
             }
           ]
         }
