@@ -55,17 +55,25 @@ namespace SimulationEvolution
                         {
                             sim.GenerateEntities(1000);
                         }
-                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_SPACE) // generate entities event
+                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_SPACE) // pause simulation event [SPACE]
                         {
                             is_simulation_on_pause = !is_simulation_on_pause;
                         }
-                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_DOWN)
+                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_DOWN) // reduce TurnWait event [DOWN]
                         {
                             ChangeTurnWait(false);
                         }
-                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_UP)
+                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_UP) // increase TurnWait event [UP]
                         {
                             ChangeTurnWait(true);
+                        }
+                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_1) // change RenderingMode event [UP]
+                        {
+                            ChangeRenderingMode(0);
+                        }
+                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_2) // change RenderingMode event [UP]
+                        {
+                            ChangeRenderingMode(1);
                         }
                     }
 
@@ -233,8 +241,6 @@ namespace SimulationEvolution
                 Console.WriteLine("Ошибка загрузки шрифта: " + TTF_GetError());
                 return;
             }
-
-
 
 
             Cycle();
