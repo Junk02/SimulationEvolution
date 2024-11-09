@@ -28,8 +28,7 @@ namespace SimulationEvolution
         {
             if (entity == null)
             {
-                entity = new Entity(this);
-                entity_count++;
+                entity = new Entity(this, ref entity_count);
             }
         }
 

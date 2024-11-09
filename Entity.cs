@@ -6,6 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using static SimulationEvolution.Settings;
 using static SimulationEvolution.Logging;
+using static SimulationEvolution.Tools;
+using System.IO.Compression;
+using System.Xml;
 
 namespace SimulationEvolution
 {
@@ -18,9 +21,11 @@ namespace SimulationEvolution
         public bool not_exist; // this is for situation when entity moved but still exist on that cell
         public bool moved;
         public int rotation;
+        public NeuralNetwork brain;
 
-        public Entity(Cell cell)
+        public Entity(Cell cell, ref int entity_count) // standart constructor
         {
+            entity_count++;
             color = Color.FromArgb(rnd.Next(0, 256), rnd.Next(0, 256), rnd.Next(0, 256));
             energy = standart_energy;
             this.cell = cell;
@@ -28,6 +33,20 @@ namespace SimulationEvolution
             not_exist = false;
             moved = false;
             rotation = rnd.Next(0, 8);
+            brain = new NeuralNetwork();
+        }
+
+        public Entity(Cell cell, Entity parent, ref int entity_count) // overloading of constructor for born entities
+        {
+            entity_count++;
+            color = parent.color;
+            energy = parent.energy;
+            this.cell = cell;
+            killed = false;
+            not_exist = false;
+            moved = false;
+            rotation = parent.rotation;
+            brain = MutateNetwork(parent.brain);
         }
 
         public void Action(Simulation sim) // method which make an action, which depends on entity behaviour
@@ -118,9 +137,7 @@ namespace SimulationEvolution
                     if (reproduction_cell.IsFree())
                     {
                         energy /= 2;
-                        reproduction_cell.AddEntity(ref sim.entity_count);
-                        reproduction_cell.entity.energy = this.energy;
-                        reproduction_cell.entity.color = this.color;
+                        reproduction_cell.entity = new Entity(reproduction_cell, this, ref sim.entity_count);
                         moved = true;
                     }
                 }

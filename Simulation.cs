@@ -109,7 +109,7 @@ namespace SimulationEvolution
              * it is recommended to use it only for testing
             */
 
-            if (count < max_entity_count - entity_count)
+            if (count <= max_entity_count - entity_count)
             {
                 for (int i = 0; i < count; i++)
                 {

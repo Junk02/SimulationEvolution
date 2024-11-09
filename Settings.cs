@@ -29,7 +29,7 @@ namespace SimulationEvolution
         public static int energy_for_moving = 3;
         public static int energy_for_rotating = 1;
         public static int energy_for_photosynthesis = 9;
-        public static int energy_for_reproduction = 60;
+        public static int energy_for_reproduction = 50;
         public static int bite_power = 100;
         public static int organics_bite_power = 5;
 
@@ -67,8 +67,8 @@ namespace SimulationEvolution
 
         public static List<int> rendering_mode = new List<int>
         {
-            0, //entity_color
-            1, //organics
+            1, //entity_color
+            0, //organics
         };
 
         public static void ChangeTurnWait(bool flag)
