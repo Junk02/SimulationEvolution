@@ -9,5 +9,7 @@ namespace SimulationEvolution
     internal class NeuralNetwork
     {
         //class for entity neuralNetwork
+
+        // test commit for neuralNetwork branch!
     }
 }

@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\ProgrammingProjects\\SimulationEvolution\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\neuralnetwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:neuralnetwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -18,11 +22,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Settings.cs",
               "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Settings.cs",
               "RelativeDocumentMoniker": "Settings.cs",
@@ -36,7 +40,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Logging.cs",
               "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Logging.cs",
               "RelativeDocumentMoniker": "Logging.cs",
@@ -45,7 +49,19 @@
               "ViewState": "AQIAACAAAAAAAAAAAAAswBEAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-07T12:08:12.595Z",
-              "IsPinned": true,
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NeuralNetwork.cs",
+              "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\NeuralNetwork.cs",
+              "RelativeDocumentMoniker": "NeuralNetwork.cs",
+              "ToolTip": "D:\\ProgrammingProjects\\SimulationEvolution\\NeuralNetwork.cs",
+              "RelativeToolTip": "NeuralNetwork.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-24T19:05:58.469Z",
               "EditorCaption": ""
             },
             {
