@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ProgrammingProjects\\SImulationEvolution\\SimulationEvolution.csproj": {}
+    "D:\\ProgrammingProjects\\SimulationEvolution\\SimulationEvolution.csproj": {}
   },
   "projects": {
-    "D:\\ProgrammingProjects\\SImulationEvolution\\SimulationEvolution.csproj": {
+    "D:\\ProgrammingProjects\\SimulationEvolution\\SimulationEvolution.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ProgrammingProjects\\SImulationEvolution\\SimulationEvolution.csproj",
+        "projectUniqueName": "D:\\ProgrammingProjects\\SimulationEvolution\\SimulationEvolution.csproj",
         "projectName": "SimulationEvolution",
-        "projectPath": "D:\\ProgrammingProjects\\SImulationEvolution\\SimulationEvolution.csproj",
+        "projectPath": "D:\\ProgrammingProjects\\SimulationEvolution\\SimulationEvolution.csproj",
         "packagesPath": "C:\\Users\\Prove\\.nuget\\packages\\",
         "outputPath": "D:\\ProgrammingProjects\\SImulationEvolution\\obj\\",
         "projectStyle": "PackageReference",

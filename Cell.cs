@@ -24,7 +24,7 @@ namespace SimulationEvolution
             energy_for_photo = energy_for_photosynthesis;
         }
 
-        public void AddEntity(ref int entity_count)
+        public void AddEntity(ref int entity_count) // adds random entity on this cell
         {
             if (entity == null)
             {
@@ -32,24 +32,24 @@ namespace SimulationEvolution
             }
         }
 
-        public void DeleteEntity(ref int entity_count)
+        public void DeleteEntity(ref int entity_count) // deletes entity from cell
         {
             entity = null!;
             entity_count--;
-        }
+        } 
 
-        public void DeleteEntity()
+        public void DeleteEntity() // deletes entity without changing *entity_count
         {
             entity = null;
         }
 
-        public bool IsFree()
+        public bool IsFree() // returns true if cell is free and false in the other case
         {
             if (entity == null) return true;
             return false;
         }
 
-        public void AddOrganics(int amount)
+        public void AddOrganics(int amount) // add *amount organics in the cell
         {
             organics += amount;
             if (!is_organics_infinite && organics > max_organics)

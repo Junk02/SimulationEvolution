@@ -172,7 +172,7 @@ namespace SimulationEvolution
 
             if (0 <= new_x && new_x < cell_x && 0 <= new_y && new_y < cell_y) return map[new_x, new_y];
             return null!;
-        }
+        } // returns cell by rotation
     }
 }
 

@@ -8,6 +8,6 @@ namespace SimulationEvolution
 {
     internal class NeuralNetwork
     {
-
+        //class for entity neuralNetwork
     }
 }

@@ -43,13 +43,13 @@ namespace SimulationEvolution
             SDL_DestroyTexture(textTexture);
         }
 
-        public void ChangeTextPosition(int x, int y)
+        public void ChangeTextPosition(int x, int y) // changes text position
         {
             textRect.x = x;
             textRect.y = y;
         }
 
-        public void Render()
+        public void Render() // calls every simulation cycle
         {
             IntPtr textSurface = TTF_RenderText_Solid(font, text, color);
             IntPtr textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
@@ -59,7 +59,7 @@ namespace SimulationEvolution
             Destroy();
         }
 
-        private void Destroy()
+        private void Destroy() // calls in Render() method
         {
             SDL_FreeSurface(textSurface);
             SDL_DestroyTexture(textTexture);

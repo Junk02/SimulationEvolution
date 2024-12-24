@@ -36,7 +36,7 @@ namespace SimulationEvolution
             brain = new NeuralNetwork();
         }
 
-        public Entity(Cell cell, Entity parent, ref int entity_count) // overloading of constructor for born entities
+        public Entity(Cell cell, Entity parent, ref int entity_count) // overloading of constructor for borned entities
         {
             entity_count++;
             color = parent.color;
@@ -49,7 +49,7 @@ namespace SimulationEvolution
             brain = MutateNetwork(parent.brain);
         }
 
-        public void Action(Simulation sim) // method which make an action, which depends on entity behaviour
+        public void Action(Simulation sim) // makes an action, which depends on entity behaviour
         {
             Check();
 
@@ -70,7 +70,7 @@ namespace SimulationEvolution
             Check();
         }
 
-        public void GetEnergy(int amount)
+        public void GetEnergy(int amount) // increases entity energy by amount
         {
             energy += amount;
             if (!is_entity_energy_infinite && energy > max_entity_energy)
@@ -79,19 +79,19 @@ namespace SimulationEvolution
             }
         }
 
-        public void Die()
+        public void Die() // makes the entity state killed
         {
             //write other code for organics and other (now it's just for testing)
             killed = true;
             cell.AddOrganics(organics_after_dying);
         }
 
-        public void Check() // method which checks if entity still alive and kills it in the other case
+        public void Check() // checks if entity still alive and kills it in the other case
         {
             if (energy <= 0) Die();
         }
 
-        public void Move(Simulation sim) // method which use rotation and move entity
+        public void Move(Simulation sim) // moves entity
         {
             if (energy >= energy_for_moving)
             {
@@ -111,7 +111,7 @@ namespace SimulationEvolution
             }
         }
 
-        public void Rotate()
+        public void Rotate() // rotates entity
         {
             if (energy >= energy_for_rotating)
             {
@@ -121,13 +121,13 @@ namespace SimulationEvolution
             }
         }
 
-        public void Photosynthesis()
+        public void Photosynthesis() // makes entity do photosynthes
         {
             GetEnergy(cell.energy_for_photo);
             moved = true;
         }
 
-        public void Reproduction(Simulation sim)
+        public void Reproduction(Simulation sim) // makes entity reproduct
         {
             if (energy >= energy_for_reproduction)
             {
@@ -144,7 +144,7 @@ namespace SimulationEvolution
             }
         }
 
-        public void Bite(Simulation sim)
+        public void Bite(Simulation sim) // makes entity bite another one
         {
             Cell bite_cell = sim.GetCellByRotation(cell.x, cell.y, rotation);
             if (bite_cell != null)
@@ -171,7 +171,7 @@ namespace SimulationEvolution
             }
         }
 
-        public void Organics(Simulation sim)
+        public void Organics(Simulation sim) // makes entity recycle organics
         {
             Cell organics_cell = sim.GetCellByRotation(cell.x, cell.y, rotation);
             if (organics_cell != null)
