@@ -33,6 +33,14 @@ namespace SimulationEvolution
         public static int bite_power = 100;
         public static int organics_bite_power = 5;
 
+        
+        //LAYERS SETTINGS
+        public const int defaulf_neurons_quantity = 3;
+
+
+        //NEURAL_NETWORK SETTINGS
+        public const int default_layers_quantity = 3;
+
 
         //CELLS SETTINGS
         public static bool is_organics_infinite = false; // if true the organics of the cell can be as large as possible
@@ -95,5 +103,16 @@ namespace SimulationEvolution
             x_size = cell_x * cell_size + cell_x + 1;
             y_size = cell_y * cell_size + cell_y + 1;
         }
+
+        /* Buttons
+         * [A]      fixed window
+         * [S]      delete all entities
+         * [D]      generate entities
+         * [SPACE]  pause simulation
+         * [DOWN]   reduce TurnWait
+         * [UP]     increase TurnWait
+         * [1]      change RenderingMode to standart
+         * [2]      change RenderingMode to organics
+         */
     }
 }

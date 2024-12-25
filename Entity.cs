@@ -33,7 +33,7 @@ namespace SimulationEvolution
             not_exist = false;
             moved = false;
             rotation = rnd.Next(0, 8);
-            brain = new NeuralNetwork();
+            brain = new NeuralNetwork(this);
         }
 
         public Entity(Cell cell, Entity parent, ref int entity_count) // overloading of constructor for borned entities

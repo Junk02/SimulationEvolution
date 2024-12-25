@@ -67,11 +67,11 @@ namespace SimulationEvolution
                         {
                             ChangeTurnWait(true);
                         }
-                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_1) // change RenderingMode event [UP]
+                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_1) // change RenderingMode event [1]
                         {
                             ChangeRenderingMode(0);
                         }
-                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_2) // change RenderingMode event [UP]
+                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_2) // change RenderingMode event [2]
                         {
                             ChangeRenderingMode(1);
                         }
