@@ -12,9 +12,9 @@ namespace SimulationEvolution
         public int value { get; private set; }
         public string type { get; private set; }
 
-        public Neuron(string type)
+        public Neuron()
         {
-            this.type = type;
+            
         }
 
         public void SetType(string type)
