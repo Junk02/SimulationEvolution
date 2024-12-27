@@ -35,11 +35,13 @@ namespace SimulationEvolution
 
         
         //LAYERS SETTINGS
-        public const int defaulf_neurons_quantity = 3;
+        public const int defaulf_neurons_quantity = 5;
 
 
         //NEURAL_NETWORK SETTINGS
-        public const int default_layers_quantity = 3;
+        public const int default_layers_quantity = 5;
+        public const float min_weight_size = 0;
+        public const float max_weight_size = 1;
 
 
         //CELLS SETTINGS
@@ -96,6 +98,22 @@ namespace SimulationEvolution
             for (int i = 0; i < rendering_mode.Count; i++) rendering_mode[i] = 0;
             rendering_mode[n] = 1;
         }
+
+        public static List<string> activation_variants = new List<string>() // possible variants for activation functions
+        {
+            "base", "rand"
+        };
+
+        public static List<string> input_neuron_variants = new List<string>() // possible variants for neurons in input layer
+        {
+            "x", "y", "energ", "visio"
+        };
+
+        public static List<string> output_neuron_variants = new List<string>() // possible variants for neurons in output layer
+        {
+            "move", "rotat", "bite", "produ", "recyc"
+        };
+            
 
         static Settings()
         {

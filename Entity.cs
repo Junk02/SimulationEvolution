@@ -101,7 +101,7 @@ namespace SimulationEvolution
                 {
                     if (moving_cell.IsFree())
                     {
-                        moving_cell.entity = this;
+                        moving_cell.AddEntity(this);
                         energy -= energy_for_moving;
                         cell = moving_cell;
                         not_exist = true;
@@ -137,7 +137,7 @@ namespace SimulationEvolution
                     if (reproduction_cell.IsFree())
                     {
                         energy /= 2;
-                        reproduction_cell.entity = new Entity(reproduction_cell, this, ref sim.entity_count);
+                        reproduction_cell.AddEntity(new Entity(reproduction_cell, this, ref sim.entity_count));
                         moved = true;
                     }
                 }
@@ -151,17 +151,17 @@ namespace SimulationEvolution
             {
                 if (!bite_cell.IsFree())
                 {
-                    if (bite_cell.entity.energy > bite_power)
+                    if (bite_cell.GetEntity().energy > bite_power)
                     {
                         GetEnergy(bite_power);
-                        bite_cell.entity.energy -= bite_power;
+                        bite_cell.GetEntity().energy -= bite_power;
                     }
                     else
                     {
-                        GetEnergy(bite_cell.entity.energy);
-                        bite_cell.entity.energy -= bite_power;
-                        bite_cell.entity.Check();
-                        if (bite_cell.entity.killed)
+                        GetEnergy(bite_cell.GetEntity().energy);
+                        bite_cell.GetEntity().energy -= bite_power;
+                        bite_cell.GetEntity().Check();
+                        if (bite_cell.GetEntity().killed)
                         {
                             bite_cell.DeleteEntity(ref sim.entity_count);
                         }

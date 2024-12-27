@@ -36,9 +36,9 @@ namespace SimulationEvolution
             {
                 for (int j = 0; j < cell_y; j++)
                 {
-                    if (!map[i, j].IsFree() && !map[i, j].entity.moved)
+                    if (!map[i, j].IsFree() && !map[i, j].GetEntity().moved)
                     {
-                        Entity ent = map[i, j].entity;
+                        Entity ent = map[i, j].GetEntity();
                         ent.Action(this);
                         if (ent.killed) ent.cell.DeleteEntity(ref entity_count);
                         if (ent.not_exist)
@@ -51,7 +51,7 @@ namespace SimulationEvolution
             }
             for (int i = 0; i < cell_x; i++)
                 for (int j = 0; j < cell_y; j++)
-                    if (!map[i, j].IsFree()) map[i, j].entity.moved = false;
+                    if (!map[i, j].IsFree()) map[i, j].GetEntity().moved = false;
             simulation_turn++;
         }
 
@@ -65,7 +65,7 @@ namespace SimulationEvolution
                     {
                         if (!map[i, j].IsFree())
                         {
-                            win.SetColor(map[i, j].entity.color);
+                            win.SetColor(map[i, j].GetEntity().color);
                             win.DrawRectangle(i * (cell_size + 1) + 1, j * (cell_size + 1) + 1, cell_size);
                         }
                     }
@@ -119,7 +119,7 @@ namespace SimulationEvolution
                         x = rnd.Next(0, cell_x);
                         y = rnd.Next(0, cell_y);
                     }
-                    while (map[x, y].entity != null);
+                    while (!map[x, y].IsFree());
                     map[x, y].AddEntity(ref entity_count);
                 }
                 Log($"{count} entities were successfully added", message_color.suc);

@@ -9,7 +9,7 @@ namespace SimulationEvolution
 {
     internal class Cell
     {
-        public Entity? entity;
+        private Entity? entity;
         public int x { get; private set; }
         public int y { get; private set; }
 
@@ -29,6 +29,14 @@ namespace SimulationEvolution
             if (entity == null)
             {
                 entity = new Entity(this, ref entity_count);
+            }
+        }
+
+        public void AddEntity(Entity entity)
+        {
+            if (this.entity == null)
+            {
+                this.entity = entity;
             }
         }
 
@@ -56,6 +64,14 @@ namespace SimulationEvolution
             {
                 organics = max_organics;
             }
+        }
+
+        public Entity GetEntity()
+        {
+            if (entity != null)
+                return entity;
+
+            return null;
         }
     }
 }

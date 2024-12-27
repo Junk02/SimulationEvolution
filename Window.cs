@@ -90,8 +90,11 @@ namespace SimulationEvolution
                             Log((sim.map[x_ind, y_ind].IsFree()).ToString());
                             if (!sim.map[x_ind, y_ind].IsFree())
                             {
-                                Log($"Energy: {sim.map[x_ind, y_ind].entity.energy}\nColor: {sim.map[x_ind, y_ind].entity.color}" +
-                                    $"\nRotation: {sim.map[x_ind, y_ind].entity.rotation}", message_color.suc);
+                                Entity entity = sim.map[x_ind, y_ind].GetEntity();
+                                Log($"Energy: {entity.energy}\nColor: {entity.color}" +
+                                    $"\nRotation: {entity.rotation}", message_color.suc);
+
+                                Log(entity.brain.GetInfoAboutNeuralNetwork(), message_color.suc);
                             }
                             else
                             {

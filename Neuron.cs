@@ -9,17 +9,24 @@ namespace SimulationEvolution
 {
     internal class Neuron
     {
-        public int value { get; private set; }
+        public float value { get; private set; }
         public string type { get; private set; }
+        public string activation { get; private set; }
 
         public Neuron()
         {
-            
+            activation = "none";
+            value = (float)rnd.NextDouble();
         }
 
         public void SetType(string type)
         {
             this.type = type;
+        }
+
+        public void SetActivation(string activation)
+        {
+            this.activation = activation;
         }
     }
 }
