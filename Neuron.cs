@@ -11,11 +11,9 @@ namespace SimulationEvolution
     {
         public float value { get; private set; }
         public string type { get; private set; }
-        public string activation { get; private set; }
 
         public Neuron()
         {
-            activation = "none";
             value = (float)rnd.NextDouble();
         }
 
@@ -24,9 +22,9 @@ namespace SimulationEvolution
             this.type = type;
         }
 
-        public void SetActivation(string activation)
+        public void SetValue(float value)
         {
-            this.activation = activation;
+            this.value = value;
         }
     }
 }

@@ -53,6 +53,30 @@ namespace SimulationEvolution
         {
             Check();
 
+            string action = brain.Prediction(sim);
+
+            switch (action)
+            {
+                case "move":
+                    Move(sim);
+                    break;
+                case "rotate":
+                    Rotate();
+                    break;
+                case "protosynthesis":
+                    Photosynthesis();
+                    break;
+                case "reproduction":
+                    Reproduction(sim);
+                    break;
+                case "bite":
+                    Bite(sim);
+                    break;
+                case "organics":
+                    Organics(sim);
+                    break;
+            }
+
             int choice = rnd.Next(1, 7);
             if (choice == 1) Move(sim);
             else if (choice == 2) Rotate();

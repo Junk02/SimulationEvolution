@@ -41,6 +41,7 @@ namespace SimulationEvolution
 
             SDL_FreeSurface(textSurface);
             SDL_DestroyTexture(textTexture);
+
         }
 
         public void ChangeTextPosition(int x, int y) // changes text position
@@ -51,8 +52,8 @@ namespace SimulationEvolution
 
         public void Render() // calls every simulation cycle
         {
-            IntPtr textSurface = TTF_RenderText_Solid(font, text, color);
-            IntPtr textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+            //IntPtr textSurface = TTF_RenderText_Solid(font, text, color);
+            //IntPtr textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
             SDL_QueryTexture(textTexture, out forma, out acss, out textRect.w, out textRect.h);
             SDL_RenderCopy(renderer, textTexture, IntPtr.Zero, ref textRect);
 

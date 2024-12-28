@@ -16,7 +16,7 @@ namespace SimulationEvolution
         {
             neurons = new List<Neuron>();
 
-            for (int i = 0; i < defaulf_neurons_quantity; i++)
+            for (int i = 0; i < size; i++)
                 neurons.Add(new Neuron());
         }
     }

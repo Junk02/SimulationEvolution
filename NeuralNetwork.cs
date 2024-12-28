@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static SimulationEvolution.Settings;
 using static SimulationEvolution.Logging;
+using static SimulationEvolution.Tools;
 
 namespace SimulationEvolution
 {
@@ -14,7 +15,7 @@ namespace SimulationEvolution
 
         // test commit for neuralNetwork branch!
         private List<Layer> layers;
-        private List<List<float>> weights;
+        public List<Weights> weights { get; private set; }
         public Entity entity;
 
         public NeuralNetwork(Entity entity, int layers_quantity = default_layers_quantity)
@@ -22,21 +23,16 @@ namespace SimulationEvolution
             this.entity = entity;
 
             this.layers = new List<Layer>();
-            this.weights = new List<List<float>>();
+            this.weights = new List<Weights>();
 
             for (int i = 0; i < layers_quantity; i++)
             {
-                layers.Add(new Layer());
+                layers.Add(new Layer(rnd.Next(3, 6)));
             } // layers initialization
 
             for (int i = 0; i < layers_quantity - 1; i++)
             {
-                weights.Add(new List<float>());
-                for (int j = 0; j < layers[i + 1].neurons.Count; j++)
-                {
-                    float weight = (float)(rnd.NextDouble() * (max_weight_size - min_weight_size) - min_weight_size);
-                    weights[i].Add(weight);
-                }
+                weights.Add(new Weights(layers[i].neurons.Count, layers[i + 1].neurons.Count));
             } // weights initialization
 
 
@@ -51,8 +47,7 @@ namespace SimulationEvolution
             {
                 for (int j = 0; j < layers[i].neurons.Count; j++)
                 {
-                    layers[i].neurons[j].SetType("basic");
-                    layers[i].neurons[j].SetActivation(activation_variants[rnd.Next(0, activation_variants.Count)]);
+                    layers[i].neurons[j].SetType(activation_variants[rnd.Next(0, activation_variants.Count)]);
                 }
             } // hidden layers initialization
 
@@ -60,6 +55,63 @@ namespace SimulationEvolution
             {
                 layers[layers_quantity - 1].neurons[i].SetType(output_neuron_variants[rnd.Next(0, output_neuron_variants.Count)]);
             } // output layer initialization
+        }
+
+        public string Prediction(Simulation sim)
+        {
+            for (int i = 0; i < layers[0].neurons.Count; i++)
+            {
+                string type = layers[0].neurons[i].type;
+                Neuron neuron = layers[0].neurons[i];
+
+                if (type == "x")
+                {
+                    neuron.SetValue(Formalize(entity.cell.x, 0, cell_x - 1));
+                }
+                else if (type == "y")
+                {
+                    neuron.SetValue(Formalize(entity.cell.y, 0, cell_y - 1));
+                }
+                else if (type == "energ")
+                {
+                    neuron.SetValue(Formalize(entity.cell.y, 0, max_entity_energy));
+                }
+                else if (type == "visio")
+                {
+                    Cell cell = sim.GetCellByRotation(entity.cell.x, entity.cell.y, entity.rotation);
+                    if (cell == null)
+                    {
+                        neuron.SetValue(-1);
+                    }
+                    else
+                    {
+                        if (!cell.IsFree())
+                        {
+                            neuron.SetValue(1);
+                        }
+                        else
+                        {
+                            neuron.SetValue(0);
+                        }
+                    }
+                }
+            } // input layer values initialization
+
+            for (int i = 1; i < layers.Count; i++)
+            {
+                for (int j = 0; j < layers[i].neurons.Count; j++)
+                {
+                    float sum = 0;
+                    for (int k = 0; k < layers[i - 1].neurons.Count; k++)
+                    {
+                        sum += layers[i - 1].neurons[k].value * weights[i - 1].weights[k][j];
+                    }
+                    layers[i].neurons[j].SetValue(sum);
+                }
+            }
+
+            return "123";
+        
         }
 
         public string GetInfoAboutNeuralNetwork() // returns string with information about NeuralNetwork
@@ -72,11 +124,7 @@ namespace SimulationEvolution
                 for (int j = 0; j < layers[i].neurons.Count; j++)
                 {
                     Neuron neuron = layers[i].neurons[j];
-                    info += $"  {neuron.type}\t--- {neuron.activation} | {neuron.value}";
-                    if (i != layers.Count - 1)
-                    {
-                        info += $"\t | {weights[i][j]}";
-                    }
+                    info += $"  {neuron.type}\t--- {neuron.value:F7}";
                     info += "\n";
                 }
             }

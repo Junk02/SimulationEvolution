@@ -13,5 +13,15 @@ namespace SimulationEvolution
         {
             return old_network;
         }
+
+        public static float FormalizeNegative(float value, float min, float max)
+        {
+            return 2 * (value - min) / (max - min) - 1;
+        }
+
+        public static float Formalize(float value, float min, float max)
+        {
+            return (value - min) / (max - min);
+        }
     }
 }

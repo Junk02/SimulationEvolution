@@ -53,7 +53,7 @@ namespace SimulationEvolution
                         }
                         else if (e.key.keysym.sym == SDL_Keycode.SDLK_d) // generate entities event [D]
                         {
-                            sim.GenerateEntities(1000);
+                            sim.GenerateEntities(1);
                         }
                         else if (e.key.keysym.sym == SDL_Keycode.SDLK_SPACE) // pause simulation event [SPACE]
                         {
@@ -92,9 +92,22 @@ namespace SimulationEvolution
                             {
                                 Entity entity = sim.map[x_ind, y_ind].GetEntity();
                                 Log($"Energy: {entity.energy}\nColor: {entity.color}" +
-                                    $"\nRotation: {entity.rotation}", message_color.suc);
+                                    $"\nRotation: {entity.rotation} X: {entity.cell.x} Y: {entity.cell.y}", message_color.suc);
 
                                 Log(entity.brain.GetInfoAboutNeuralNetwork(), message_color.suc);
+
+                                for (int i = 0; i < entity.brain.weights.Count; i++)
+                                {                                    string info = "";
+                                    for (int j = 0; j < entity.brain.weights[i].layer1_size; j++)
+                                    {
+                                        for (int k = 0; k < entity.brain.weights[i].layer2_size; k++) 
+                                        {
+                                            info += $"{entity.brain.weights[i].weights[j][k]:F7} ";
+                                        }
+                                        info += "\n";
+                                    }
+                                    Log(info);
+                                }
                             }
                             else
                             {
@@ -230,7 +243,6 @@ namespace SimulationEvolution
                 Console.WriteLine("Ошибка загрузки шрифта: " + TTF_GetError());
                 return;
             }
-
 
             Cycle();
         }
