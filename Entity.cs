@@ -9,6 +9,7 @@ using static SimulationEvolution.Logging;
 using static SimulationEvolution.Tools;
 using System.IO.Compression;
 using System.Xml;
+using System.Collections.Specialized;
 
 namespace SimulationEvolution
 {
@@ -53,37 +54,40 @@ namespace SimulationEvolution
         {
             Check();
 
-            string action = brain.Prediction(sim);
+            int counter = 0; // counter for rotating IMPORTANT
+            string action = "rotr";
 
-            switch (action)
+            while ((action == "rotr" || action == "rotl") && counter != 5)
             {
-                case "move":
-                    Move(sim);
-                    break;
-                case "rotate":
-                    Rotate();
-                    break;
-                case "protosynthesis":
-                    Photosynthesis();
-                    break;
-                case "reproduction":
-                    Reproduction(sim);
-                    break;
-                case "bite":
-                    Bite(sim);
-                    break;
-                case "organics":
-                    Organics(sim);
-                    break;
-            }
+                counter++;
 
-            int choice = rnd.Next(1, 7);
-            if (choice == 1) Move(sim);
-            else if (choice == 2) Rotate();
-            else if (choice == 3) Photosynthesis();
-            else if (choice == 4) Reproduction(sim);
-            else if (choice == 5) Bite(sim);
-            else if (choice == 6) Organics(sim);
+                action = brain.Prediction(sim);
+
+                switch (action)
+                {
+                    case "move":
+                        Move(sim);
+                        break;
+                    case "rotl":
+                        Rotate("left");
+                        break;
+                    case "rotr":
+                        Rotate("right");
+                        break;
+                    case "photo":
+                        Photosynthesis();
+                        break;
+                    case "produ":
+                        Reproduction(sim);
+                        break;
+                    case "bite":
+                        Bite(sim);
+                        break;
+                    case "recyc":
+                        Organics(sim);
+                        break;
+                }
+            }
 
             if (!moved)
             {
@@ -135,11 +139,22 @@ namespace SimulationEvolution
             }
         }
 
-        public void Rotate() // rotates entity
+        public void Rotate(string side = "left") // rotates entity
         {
             if (energy >= energy_for_rotating)
             {
-                rotation = rnd.Next(0, 8);
+                if (side == "left")
+                {
+                    rotation--;
+                }
+                else if (side == "right")
+                {
+                    rotation++;
+                }
+
+                if (rotation < 0) rotation = 8;
+                if (rotation > 8) rotation = 0;
+
                 energy -= energy_for_rotating;
                 moved = true;
             }

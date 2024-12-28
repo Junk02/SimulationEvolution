@@ -47,7 +47,7 @@ namespace SimulationEvolution
             {
                 for (int j = 0; j < layers[i].neurons.Count; j++)
                 {
-                    layers[i].neurons[j].SetType(activation_variants[rnd.Next(0, activation_variants.Count)]);
+                    layers[i].neurons[j].SetType(hidden_neuron_variants[rnd.Next(0, hidden_neuron_variants.Count)]);
                 }
             } // hidden layers initialization
 
@@ -106,11 +106,39 @@ namespace SimulationEvolution
                     {
                         sum += layers[i - 1].neurons[k].value * weights[i - 1].weights[k][j];
                     }
+                    if (i != layers.Count - 1)
+                    {
+                        if (layers[i].neurons[j].type == "relu")
+                        {
+                            sum = ReLu(sum);
+                        }
+                        else if (layers[i].neurons[j].type == "line")
+                        {
+                            sum = Linear(sum);
+                        }
+                        else if (layers[i].neurons[j].type == "tanh")
+                        {
+                            sum = Tanh(sum);
+                        }
+                        else if (layers[i].neurons[j].type == "rand")
+                        {
+                            sum = Rand(sum);
+                        }
+                    }
                     layers[i].neurons[j].SetValue(sum);
                 }
             }
 
-            return "123";
+            int max = 0;
+            for (int i = 0; i < layers[layers.Count - 1].neurons.Count; i++)
+            {
+                if (layers[layers.Count - 1].neurons[max].value < layers[layers.Count - 1].neurons[i].value)
+                {
+                    max = i;
+                }
+            } // finds the largest output neuron value
+
+            return layers[layers.Count - 1].neurons[max].type;
         
         }
 

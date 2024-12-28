@@ -72,6 +72,7 @@ namespace SimulationEvolution
         public static int max_TurnWait = 10000;
         public static int min_TurnWait = 0;
         public static int change_TurnWait = 100;
+        public static int entity_to_spawn_by_click = 100;
         public static bool fixed_window = true; // if true you can chage window position
         public static bool is_simulation_on_pause = false; // it true simulation on pause
 
@@ -99,9 +100,9 @@ namespace SimulationEvolution
             rendering_mode[n] = 1;
         }
 
-        public static List<string> activation_variants = new List<string>() // possible variants for activation functions
+        public static List<string> hidden_neuron_variants = new List<string>() // possible variants for neurons in hidden layer
         {
-            "base", "rand"
+            "relu", "line", "tanh", "rand"
         };
 
         public static List<string> input_neuron_variants = new List<string>() // possible variants for neurons in input layer
@@ -111,9 +112,8 @@ namespace SimulationEvolution
 
         public static List<string> output_neuron_variants = new List<string>() // possible variants for neurons in output layer
         {
-            "move", "rotat", "bite", "produ", "recyc"
+            "move", "rotl", "rotr", "bite", "produ", "recyc", "photo"
         };
-            
 
         static Settings()
         {

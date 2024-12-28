@@ -53,7 +53,7 @@ namespace SimulationEvolution
                         }
                         else if (e.key.keysym.sym == SDL_Keycode.SDLK_d) // generate entities event [D]
                         {
-                            sim.GenerateEntities(1);
+                            sim.GenerateEntities(entity_to_spawn_by_click);
                         }
                         else if (e.key.keysym.sym == SDL_Keycode.SDLK_SPACE) // pause simulation event [SPACE]
                         {
@@ -92,7 +92,7 @@ namespace SimulationEvolution
                             {
                                 Entity entity = sim.map[x_ind, y_ind].GetEntity();
                                 Log($"Energy: {entity.energy}\nColor: {entity.color}" +
-                                    $"\nRotation: {entity.rotation} X: {entity.cell.x} Y: {entity.cell.y}", message_color.suc);
+                                    $"\nRotation: {entity.rotation} | X: {entity.cell.x} Y: {entity.cell.y}", message_color.suc);
 
                                 Log(entity.brain.GetInfoAboutNeuralNetwork(), message_color.suc);
 
