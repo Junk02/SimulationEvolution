@@ -40,11 +40,14 @@ namespace SimulationEvolution
                     {
                         Entity ent = map[i, j].GetEntity();
                         ent.Action(this);
-                        if (ent.killed) ent.cell.DeleteEntity(ref entity_count);
                         if (ent.not_exist)
                         {
                             ent.not_exist = false;
                             map[i, j].DeleteEntity();
+                        }
+                        if (ent.killed)
+                        {
+                            ent.cell.DeleteEntity(ref entity_count);
                         }
                     }
                 }

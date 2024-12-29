@@ -14,7 +14,7 @@ namespace SimulationEvolution
         //class for entity neuralNetwork
 
         // test commit for neuralNetwork branch!
-        private List<Layer> layers;
+        public List<Layer> layers;
         public List<Weights> weights { get; private set; }
         public Entity entity;
 
@@ -55,6 +55,16 @@ namespace SimulationEvolution
             {
                 layers[layers_quantity - 1].neurons[i].SetType(output_neuron_variants[rnd.Next(0, output_neuron_variants.Count)]);
             } // output layer initialization
+        }
+
+        public NeuralNetwork(NeuralNetwork parent, Entity entity) // constructor of copying
+        {
+            this.entity = entity;
+
+            layers = parent.layers.Select(layer => new Layer(layer)).ToList();
+
+            weights = parent.weights.Select(weight => new Weights(weight)).ToList();
+
         }
 
         public string Prediction(Simulation sim)

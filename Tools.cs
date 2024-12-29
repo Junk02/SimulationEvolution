@@ -10,9 +10,16 @@ namespace SimulationEvolution
 {
     internal static class Tools
     {
-        public static NeuralNetwork MutateNetwork(NeuralNetwork old_network)
+        public static NeuralNetwork MutateNetwork(NeuralNetwork parent_network)
         {
-            return old_network;
+            NeuralNetwork network = new NeuralNetwork(parent_network, null);
+
+            if (rnd.Next(1, 3) == 1)
+            {
+                network.layers[0].neurons[rnd.Next(0, network.layers[0].neurons.Count)].SetType(input_neuron_variants[rnd.Next(0, input_neuron_variants.Count)]);
+            }
+
+            return network;
         }
 
         public static float FormalizeNegative(float value, float min, float max)

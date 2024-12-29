@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,8 +43,19 @@ namespace SimulationEvolution
 
         public void DeleteEntity(ref int entity_count) // deletes entity from cell
         {
-            entity = null!;
             entity_count--;
+            if (entity_count < 0)
+            {
+                SimulationEvolution.Window.LogInfoAboutEntity(entity);
+                entity.killed = false;
+                //entity.GetEnergy(standart_energy);
+                entity.color = Color.White;
+                is_simulation_on_pause = true;
+            }
+            else
+            {
+                entity = null;
+            }
         } 
 
         public void DeleteEntity() // deletes entity without changing *entity_count

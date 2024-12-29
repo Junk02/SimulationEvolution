@@ -90,24 +90,7 @@ namespace SimulationEvolution
                             Log((sim.map[x_ind, y_ind].IsFree()).ToString());
                             if (!sim.map[x_ind, y_ind].IsFree())
                             {
-                                Entity entity = sim.map[x_ind, y_ind].GetEntity();
-                                Log($"Energy: {entity.energy}\nColor: {entity.color}" +
-                                    $"\nRotation: {entity.rotation} | X: {entity.cell.x} Y: {entity.cell.y}", message_color.suc);
-
-                                Log(entity.brain.GetInfoAboutNeuralNetwork(), message_color.suc);
-
-                                for (int i = 0; i < entity.brain.weights.Count; i++)
-                                {                                    string info = "";
-                                    for (int j = 0; j < entity.brain.weights[i].layer1_size; j++)
-                                    {
-                                        for (int k = 0; k < entity.brain.weights[i].layer2_size; k++) 
-                                        {
-                                            info += $"{entity.brain.weights[i].weights[j][k]:F7} ";
-                                        }
-                                        info += "\n";
-                                    }
-                                    Log(info);
-                                }
+                                LogInfoAboutEntity(sim.map[x_ind, y_ind].GetEntity());
                             }
                             else
                             {
@@ -207,6 +190,28 @@ namespace SimulationEvolution
         {
             SDL.SDL_GetWindowPosition(window, out x, out y);
         }
+
+        public static void LogInfoAboutEntity(Entity entity)
+        {
+            Log($"Energy: {entity.energy}\nColor: {entity.color}" +
+                $"\nRotation: {entity.rotation} | X: {entity.cell.x} Y: {entity.cell.y}\nKilled: {entity.killed} | Moved: {entity.moved}\n", message_color.suc);
+
+            Log(entity.brain.GetInfoAboutNeuralNetwork(), message_color.suc);
+
+            for (int i = 0; i < entity.brain.weights.Count; i++)
+            {
+                string info = "";
+                for (int j = 0; j < entity.brain.weights[i].layer1_size; j++)
+                {
+                    for (int k = 0; k < entity.brain.weights[i].layer2_size; k++)
+                    {
+                        info += $"{entity.brain.weights[i].weights[j][k]:F7} ";
+                    }
+                    info += "\n";
+                }
+                Log(info);
+            } // info about weights
+        } // logs info about entity
 
         public Window(string name, int pos_x, int pos_y)
         {

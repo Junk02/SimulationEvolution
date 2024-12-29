@@ -19,5 +19,10 @@ namespace SimulationEvolution
             for (int i = 0; i < size; i++)
                 neurons.Add(new Neuron());
         }
+
+        public Layer(Layer parent) // constructor of copying
+        {
+            neurons = parent.neurons.Select(neuron => new Neuron(neuron)).ToList();
+        }
     }
 }

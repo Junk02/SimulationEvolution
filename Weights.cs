@@ -29,5 +29,12 @@ namespace SimulationEvolution
                 }
             }
         }
+
+        public Weights(Weights parent)
+        {
+            layer1_size = parent.layer1_size;
+            layer2_size = parent.layer2_size;
+            weights = parent.weights.Select(row => new List<float>(row)).ToList();
+        }
     }
 }

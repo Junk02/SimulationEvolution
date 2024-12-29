@@ -17,6 +17,12 @@ namespace SimulationEvolution
             value = (float)rnd.NextDouble();
         }
 
+        public Neuron(Neuron parent) // constructor of copying
+        {
+            value = parent.value;
+            type = parent.type;
+        }
+
         public void SetType(string type)
         {
             this.type = type;

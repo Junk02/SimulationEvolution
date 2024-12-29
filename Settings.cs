@@ -19,18 +19,18 @@ namespace SimulationEvolution
         public static Random rnd = new Random();
 
         public static bool is_entity_energy_infinite = false; // if true the energy of the entities can be as large as possible
-        public static int max_entity_energy = 100; // this variable is used if the maximum amount of energy of the entity is not infinite
+        public static int max_entity_energy = 1000; // this variable is used if the maximum amount of energy of the entity is not infinite
 
 
         //ENTITIES SETTINGS
-        public static int standart_energy = 100;
+        public static int standart_energy = 1000;
         public static int organics_after_dying = 10;
-        public static int energy_for_staying = 1;
-        public static int energy_for_moving = 3;
+        public static int energy_for_staying = 10;
+        public static int energy_for_moving = 5;
         public static int energy_for_rotating = 1;
-        public static int energy_for_photosynthesis = 9;
+        public static int energy_for_photosynthesis = 15;
         public static int energy_for_reproduction = 50;
-        public static int bite_power = 100;
+        public static int bite_power = 0;
         public static int organics_bite_power = 5;
 
         
@@ -72,7 +72,7 @@ namespace SimulationEvolution
         public static int max_TurnWait = 10000;
         public static int min_TurnWait = 0;
         public static int change_TurnWait = 100;
-        public static int entity_to_spawn_by_click = 100;
+        public static int entity_to_spawn_by_click = 1000;
         public static bool fixed_window = true; // if true you can chage window position
         public static bool is_simulation_on_pause = false; // it true simulation on pause
 
@@ -107,7 +107,7 @@ namespace SimulationEvolution
 
         public static List<string> input_neuron_variants = new List<string>() // possible variants for neurons in input layer
         {
-            "x", "y", "energ", "visio"
+            "x", "y", "energ", "visio", "visio"
         };
 
         public static List<string> output_neuron_variants = new List<string>() // possible variants for neurons in output layer

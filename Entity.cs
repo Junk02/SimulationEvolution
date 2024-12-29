@@ -48,11 +48,17 @@ namespace SimulationEvolution
             moved = false;
             rotation = parent.rotation;
             brain = MutateNetwork(parent.brain);
+            brain.entity = this;
         }
 
         public void Action(Simulation sim) // makes an action, which depends on entity behaviour
         {
             Check();
+
+            if (killed)
+            {
+                return;
+            }
 
             int counter = 0; // counter for rotating IMPORTANT
             string action = "rotr";
@@ -91,7 +97,7 @@ namespace SimulationEvolution
 
             if (!moved)
             {
-                energy -= energy_for_moving;
+                energy -= energy_for_staying;
                 moved = true;
             }
 
@@ -198,12 +204,9 @@ namespace SimulationEvolution
                     else
                     {
                         GetEnergy(bite_cell.GetEntity().energy);
-                        bite_cell.GetEntity().energy -= bite_power;
-                        bite_cell.GetEntity().Check();
-                        if (bite_cell.GetEntity().killed)
-                        {
-                            bite_cell.DeleteEntity(ref sim.entity_count);
-                        }
+                        //bite_cell.GetEntity().energy -= bite_power;
+                        //bite_cell.GetEntity().Check();
+                        bite_cell.DeleteEntity(ref sim.entity_count);
                         moved = true;
                     }
                 }
