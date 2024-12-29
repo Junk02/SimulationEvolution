@@ -30,7 +30,7 @@ namespace SimulationEvolution
         public static int energy_for_rotating = 1;
         public static int energy_for_photosynthesis = 15;
         public static int energy_for_reproduction = 50;
-        public static int bite_power = 0;
+        public static int bite_power = 1000;
         public static int organics_bite_power = 5;
 
         
@@ -80,6 +80,8 @@ namespace SimulationEvolution
         {
             1, //entity_color
             0, //organics
+            0, //eat_color
+            0, //energy_color
         };
 
         public static void ChangeTurnWait(bool flag)

@@ -74,7 +74,7 @@ namespace SimulationEvolution
                     }
                 }
             }
-            else if (rendering_mode[1] == 1) //organics_mode
+            else if (rendering_mode[1] == 1) // organics_mode
             {
                 for (int i = 0; i < cell_x; i++)
                 {
@@ -85,7 +85,40 @@ namespace SimulationEvolution
                     }
                 }
             }
-            
+            else if (rendering_mode[2] == 1) // eat_color_mode
+            {
+                for (int i = 0; i < cell_x; i++)
+                {
+                    for (int j = 0; j < cell_y; j++)
+                    {
+                        if (!map[i, j].IsFree())
+                        {
+                            win.SetColor(map[i, j].GetEntity().eat_color);
+                            win.DrawRectangle(i * (cell_size + 1) + 1, j * (cell_size + 1) + 1, cell_size);
+                        }
+                    }
+                }
+            }
+            else if (rendering_mode[3] == 1) // energy_mode
+            {
+                for (int i = 0; i < cell_x; i++)
+                {
+                    for (int j = 0; j < cell_y; j++)
+                    {
+                        if (!map[i, j].IsFree())
+                        {
+                            float normalizedEnergy = (float)Math.Clamp(((double)map[i, j].GetEntity().energy / (double)max_entity_energy), 0f, 1f);
+                            float smoothEnergy = (float)Math.Sqrt(normalizedEnergy);
+                            int r = 255;
+                            int g = (byte)(255 * (1 - smoothEnergy));
+                            int b = 0;
+                            win.SetColor((byte)r, (byte)g, (byte)b);
+                            win.DrawRectangle(i * (cell_size + 1) + 1, j * (cell_size + 1) + 1, cell_size);
+                        }
+                    }
+                }
+            }
+
             win.SetColor(default_color);
         }
 

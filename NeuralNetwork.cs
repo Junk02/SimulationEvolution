@@ -97,7 +97,14 @@ namespace SimulationEvolution
                     {
                         if (!cell.IsFree())
                         {
-                            neuron.SetValue(1);
+                            if (IsRelatives(this, cell.GetEntity().brain))
+                            {
+                                neuron.SetValue(1);
+                            }
+                            else
+                            {
+                                neuron.SetValue(0.5f);
+                            }
                         }
                         else
                         {

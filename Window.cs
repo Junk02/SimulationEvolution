@@ -28,6 +28,8 @@ namespace SimulationEvolution
 
         int x1 = 0, y1 = 0; // REMOVE AFTER CHECK
 
+        public Entity selected_entity;
+
 
 
         public void Cycle() // method which check events, draw graphics, make simulation turn, etc.
@@ -75,6 +77,26 @@ namespace SimulationEvolution
                         {
                             ChangeRenderingMode(1);
                         }
+                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_3) // change RenderingMode event [3]
+                        {
+                            ChangeRenderingMode(2);
+                        }
+                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_4) // change RenderingMode event [4]
+                        {
+                            ChangeRenderingMode(3);
+                        }
+                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_LCTRL)
+                        {
+                            int count = 0;
+                            for (int i = 0; i < cell_x; i++)
+                                for (int j = 0; j < cell_y; j++)
+                                    if (!sim.map[i, j].IsFree())
+                                    {
+                                        sim.map[i, j].GetEntity().color = Color.Green;
+                                        count++;
+                                    }
+                            Log(message_color.def, count);
+                        }
                     }
 
                     else if (e.type == SDL_EventType.SDL_MOUSEBUTTONDOWN) // check mouse position event
@@ -90,6 +112,7 @@ namespace SimulationEvolution
                             Log((sim.map[x_ind, y_ind].IsFree()).ToString());
                             if (!sim.map[x_ind, y_ind].IsFree())
                             {
+                                selected_entity = sim.map[x_ind, y_ind].GetEntity();
                                 LogInfoAboutEntity(sim.map[x_ind, y_ind].GetEntity());
                             }
                             else
@@ -125,7 +148,6 @@ namespace SimulationEvolution
 
                 population_text.Render();
                 time_text.Render();
-
 
 
 

@@ -46,6 +46,8 @@ namespace SimulationEvolution
             entity_count--;
             if (entity_count < 0)
             {
+                is_simulation_on_pause = true;
+                return;
                 SimulationEvolution.Window.LogInfoAboutEntity(entity);
                 entity.killed = false;
                 //entity.GetEnergy(standart_energy);

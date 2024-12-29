@@ -16,6 +16,7 @@ namespace SimulationEvolution
     internal class Entity
     {
         public Color color;
+        public Color eat_color;
         public int energy;
         public Cell cell; // don't forget to change when changing the location
         public bool killed; // this is for situation when entity died and we need to delete it
@@ -28,6 +29,7 @@ namespace SimulationEvolution
         {
             entity_count++;
             color = Color.FromArgb(rnd.Next(0, 256), rnd.Next(0, 256), rnd.Next(0, 256));
+            eat_color = Color.White;
             energy = standart_energy;
             this.cell = cell;
             killed = false;
@@ -40,14 +42,23 @@ namespace SimulationEvolution
         public Entity(Cell cell, Entity parent, ref int entity_count) // overloading of constructor for borned entities
         {
             entity_count++;
-            color = parent.color;
             energy = parent.energy;
             this.cell = cell;
             killed = false;
             not_exist = false;
             moved = false;
             rotation = parent.rotation;
-            brain = MutateNetwork(parent.brain);
+            bool is_mutated = false;
+            brain = MutateNetwork(parent.brain, ref is_mutated);
+            eat_color = parent.eat_color;
+            if (is_mutated)
+            {
+                color = MutateColor(parent.color);
+            }
+            else
+            {
+                color = parent.color;
+            }
             brain.entity = this;
         }
 
@@ -158,8 +169,8 @@ namespace SimulationEvolution
                     rotation++;
                 }
 
-                if (rotation < 0) rotation = 8;
-                if (rotation > 8) rotation = 0;
+                if (rotation < 0) rotation = 7;
+                if (rotation > 7) rotation = 0;
 
                 energy -= energy_for_rotating;
                 moved = true;
@@ -169,6 +180,7 @@ namespace SimulationEvolution
         public void Photosynthesis() // makes entity do photosynthes
         {
             GetEnergy(cell.energy_for_photo);
+            ChangeEatColor("photo");
             moved = true;
         }
 
@@ -207,8 +219,9 @@ namespace SimulationEvolution
                         //bite_cell.GetEntity().energy -= bite_power;
                         //bite_cell.GetEntity().Check();
                         bite_cell.DeleteEntity(ref sim.entity_count);
-                        moved = true;
                     }
+                    moved = true;
+                    ChangeEatColor("bite");
                 }
             }
         }
@@ -229,7 +242,42 @@ namespace SimulationEvolution
                     organics_cell.organics -= organics_bite_power;
                 }
                 moved = true;
+                ChangeEatColor("organics");
             }
+        }
+
+        public void ChangeEatColor(string type)
+        {
+            int r = eat_color.R, g = eat_color.G, b = eat_color.B;
+            if (type == "photo")
+            {
+                g++;
+                r--;
+                b--;
+            }
+            else if (type == "organics")
+            {
+                g--;
+                r--;
+                b++;
+            }
+            else if (type == "bite")
+            {
+                g--;
+                r++;
+                b--;
+            }
+
+            if (r > 255) r = 255;
+            else if (r < 0) r = 0;
+
+            if (g > 255) g = 255;
+            else if (g < 0) g = 0;
+
+            if (b > 255) b = 255;
+            else if (b < 0) b = 0;
+
+            eat_color = Color.FromArgb(r, g, b);
         }
     }
 }
