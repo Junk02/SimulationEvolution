@@ -14,7 +14,7 @@ namespace SimulationEvolution
 
         public Neuron()
         {
-            value = (float)rnd.NextDouble();
+
         }
 
         public Neuron(Neuron parent) // constructor of copying

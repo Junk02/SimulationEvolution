@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static SimulationEvolution.Settings;
+using static SimulationEvolution.Tools;
+using static SimulationEvolution.Logging;
 
 namespace SimulationEvolution
 {
@@ -30,11 +32,23 @@ namespace SimulationEvolution
             }
         }
 
-        public Weights(Weights parent)
+        public Weights(Weights parent) // constructor of copying
         {
             layer1_size = parent.layer1_size;
             layer2_size = parent.layer2_size;
             weights = parent.weights.Select(row => new List<float>(row)).ToList();
+        }
+
+        public void Mutate(int count)
+        {
+            if (count > layer1_size * layer2_size)
+            {
+                return;
+            }
+            for (int x = 0; x < count; x++)
+            {
+                weights[rnd.Next(0, layer1_size)][rnd.Next(0, layer2_size)] = NextFloat(min_weight_size, max_weight_size);
+            }
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using static SimulationEvolution.Logging;
@@ -16,15 +18,31 @@ namespace SimulationEvolution
         {
             NeuralNetwork network = new NeuralNetwork(parent_network, null);
 
-            if (rnd.Next(1, 20) == 1)
+            if (Chance(mutation_chance))
             {
-                network.layers[0].neurons[rnd.Next(0, network.layers[0].neurons.Count)].SetType(input_neuron_variants[rnd.Next(0, input_neuron_variants.Count)]);
                 is_mutated = true;
-            }
-            if (rnd.Next(1, 20) == 1)
-            {
-                network.layers[network.layers.Count - 1].neurons[rnd.Next(0, network.layers[network.layers.Count - 1].neurons.Count)].SetType(output_neuron_variants[rnd.Next(0, output_neuron_variants.Count)]);
-                is_mutated = true;
+
+                int chance = ChanceArray([neuron_mutation_chance, connection_mutation_chance]);
+
+                if (chance == 0)
+                {
+                    if (rnd.Next(1, 3) == 1)
+                    {
+                        network.layers[0].neurons[rnd.Next(0, network.layers[0].neurons.Count)].SetType(input_neuron_variants[rnd.Next(0, input_neuron_variants.Count)]);
+                    }
+                    else
+                    {
+                        network.layers[network.layers.Count - 1].neurons[rnd.Next(0, network.layers[network.layers.Count - 1].neurons.Count)].SetType(output_neuron_variants[rnd.Next(0, output_neuron_variants.Count)]);
+                    }
+                }
+                else if (chance == 1) // this stuff doesn't work, artem try to make it next time
+                {
+                    network.MutateWeights(rnd.Next(min_weights_mutate_count, max_weights_mutate_count + 1));
+                }
+                else
+                {
+                    throw new Exception("neuron_mutation_chance + connection_mutation_chance is not 1f");
+                }
             }
 
             return network;
@@ -32,8 +50,45 @@ namespace SimulationEvolution
 
         public static Color MutateColor(Color color)
         {
-            return color;
-            //return Color.FromArgb(rnd.Next(0, 256), rnd.Next(0, 256), rnd.Next(0, 256));
+            //return color;
+            return Color.FromArgb(rnd.Next(0, 256), rnd.Next(0, 256), rnd.Next(0, 256));
+        }
+
+        public static int ChanceArray(float[] probabilities)
+        {
+            float random_value = (float)rnd.NextDouble();
+
+            float cumulative = 0f;
+
+            for (int i = 0; i < probabilities.Length; i++)
+            {
+                cumulative += probabilities[i];
+
+                if (random_value < cumulative)
+                {
+                    return i;
+                }
+            }
+
+            Log("ERROR IN METHOD Chance() looks like probabilities sum is bigger than 1");
+            return 0;
+        } // generates n probabilities
+
+        public static bool Chance(float probability)
+        {
+            float random_value = (float)rnd.NextDouble();
+
+            if (random_value < probability)
+            {
+                return true;
+            }
+
+            return false;
+        } // generates one probability
+
+        public static float NextFloat(float minimum, float maximum)
+        {
+            return (float)rnd.NextDouble() * (maximum - minimum) + minimum;
         }
 
         public static bool IsRelatives(NeuralNetwork network1, NeuralNetwork network2)

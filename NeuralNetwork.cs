@@ -25,10 +25,16 @@ namespace SimulationEvolution
             this.layers = new List<Layer>();
             this.weights = new List<Weights>();
 
-            for (int i = 0; i < layers_quantity; i++)
+            layers.Add(new Layer(defaulf_neurons_input_layer_quantity));
+
+            for (int i = 1; i < layers_quantity - 1; i++)
             {
-                layers.Add(new Layer(rnd.Next(3, 6)));
-            } // layers initialization
+                layers.Add(new Layer(defaulf_neurons_hidden_layer_quantity));
+            }
+
+            layers.Add(new Layer(defaulf_neurons_output_layer_quantity));
+            // layers initialization
+
 
             for (int i = 0; i < layers_quantity - 1; i++)
             {
@@ -69,6 +75,7 @@ namespace SimulationEvolution
 
         public string Prediction(Simulation sim)
         {
+            float vision_cell_value = 100;
             for (int i = 0; i < layers[0].neurons.Count; i++)
             {
                 string type = layers[0].neurons[i].type;
@@ -88,29 +95,11 @@ namespace SimulationEvolution
                 }
                 else if (type == "visio")
                 {
-                    Cell cell = sim.GetCellByRotation(entity.cell.x, entity.cell.y, entity.rotation);
-                    if (cell == null)
+                    if (vision_cell_value == 100)
                     {
-                        neuron.SetValue(-1);
+                        vision_cell_value = GetNumberByVision(sim.GetCellByRotation(entity.cell.x, entity.cell.y, entity.rotation));
                     }
-                    else
-                    {
-                        if (!cell.IsFree())
-                        {
-                            if (IsRelatives(this, cell.GetEntity().brain))
-                            {
-                                neuron.SetValue(1);
-                            }
-                            else
-                            {
-                                neuron.SetValue(0.5f);
-                            }
-                        }
-                        else
-                        {
-                            neuron.SetValue(0);
-                        }
-                    }
+                    neuron.SetValue(vision_cell_value);             
                 }
             } // input layer values initialization
 
@@ -159,6 +148,23 @@ namespace SimulationEvolution
         
         }
 
+        public float GetNumberByVision(Cell cell)
+        {
+            if (cell == null)
+            {
+                return -1;
+            }
+            if (!cell.IsFree())
+            {
+                if (IsRelatives(this, cell.GetEntity().brain))
+                {
+                    return 1;
+                }
+                return 0.5f;
+            }
+            return 0;
+        }
+
         public string GetInfoAboutNeuralNetwork() // returns string with information about NeuralNetwork
         {
             string info = "";
@@ -174,6 +180,21 @@ namespace SimulationEvolution
                 }
             }
             return info;
+        }
+
+        public void MutateWeights(int count)
+        {
+            if (can_weights_mutate_in_different_layers)
+            {
+                for (int x = 0; x < count; x++)
+                {
+                    weights[rnd.Next(0, weights.Count)].Mutate(1);
+                }
+            }
+            else
+            {
+                weights[rnd.Next(0, weights.Count)].Mutate(count);
+            }
         }
     }
 }

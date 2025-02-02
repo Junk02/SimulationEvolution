@@ -12,7 +12,7 @@ namespace SimulationEvolution
     {
         public List<Neuron> neurons;
 
-        public Layer(int size = defaulf_neurons_quantity)
+        public Layer(int size = defaulf_neurons_input_layer_quantity)
         {
             neurons = new List<Neuron>();
 

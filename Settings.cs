@@ -21,6 +21,14 @@ namespace SimulationEvolution
         public static bool is_entity_energy_infinite = false; // if true the energy of the entities can be as large as possible
         public static int max_entity_energy = 1000; // this variable is used if the maximum amount of energy of the entity is not infinite
 
+        //MUTATION SETTINGS
+        public static float mutation_chance = 0.02f;
+        public static float neuron_mutation_chance = 0.5f; // these two should make 1f in sum
+        public static float connection_mutation_chance = 0.5f; // these two should make 1f in sum
+        public static int min_weights_mutate_count = 5; // min amount of weights to mutate
+        public static int max_weights_mutate_count = 10; // max amount of weights to mutate
+        public static bool can_weights_mutate_in_different_layers = false;
+
 
         //ENTITIES SETTINGS
         public static int standart_energy = 1000;
@@ -35,13 +43,16 @@ namespace SimulationEvolution
 
         
         //LAYERS SETTINGS
-        public const int defaulf_neurons_quantity = 5;
+        public const int defaulf_neurons_input_layer_quantity = 5;
+        public const int defaulf_neurons_hidden_layer_quantity = 5;
+        public const int defaulf_neurons_output_layer_quantity = 5;
 
+        //WEIGHTS SETTINGS
+        public const float min_weight_size = 0;
+        public const float max_weight_size = 1;
 
         //NEURAL_NETWORK SETTINGS
         public const int default_layers_quantity = 5;
-        public const float min_weight_size = 0;
-        public const float max_weight_size = 1;
 
 
         //CELLS SETTINGS

@@ -50,6 +50,7 @@ namespace SimulationEvolution
             rotation = parent.rotation;
             bool is_mutated = false;
             brain = MutateNetwork(parent.brain, ref is_mutated);
+            brain.entity = this;
             eat_color = parent.eat_color;
             if (is_mutated)
             {
@@ -59,7 +60,6 @@ namespace SimulationEvolution
             {
                 color = parent.color;
             }
-            brain.entity = this;
         }
 
         public void Action(Simulation sim) // makes an action, which depends on entity behaviour

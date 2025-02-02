@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using static SimulationEvolution.Settings;
 using static SimulationEvolution.Logging;
 using System.Xml;
+using System.Diagnostics;
 
 namespace SimulationEvolution
 {
@@ -19,9 +20,15 @@ namespace SimulationEvolution
         public int entity_count;
         private ulong simulation_turn;
 
+        private Stopwatch stopwatch;
+        private double deltaTime;
+        public double fps { get; private set; }
+
         public Simulation(Window win)
         {
             this.win = win;
+            stopwatch = new Stopwatch();
+            stopwatch.Start();
             map = new Cell[cell_x, cell_y];
             for (int i = 0; i < cell_x; i++)
                 for (int j = 0; j < cell_y; j++)
@@ -32,6 +39,10 @@ namespace SimulationEvolution
 
         public void MakeTurn() // method which makes one simulation turn
         {
+            deltaTime = stopwatch.Elapsed.TotalSeconds;
+            stopwatch.Restart();
+            fps = 1.0 / deltaTime;
+
             for (int i = 0; i < cell_x; i++)
             {
                 for (int j = 0; j < cell_y; j++)

@@ -145,9 +145,11 @@ namespace SimulationEvolution
 
                 Text population_text = new Text(255, 255, 255, $"Population: {sim.entity_count}", renderer, x_size + 10, 0);
                 Text time_text = new Text(255, 255, 255, $"Time: {sim.GetSimulationTurn()}", renderer, x_size + 10, 20);
+                Text fps_text = new Text(255, 255, 255, $"FPS: {Convert.ToInt32(sim.fps)}", renderer, x_size + 10, 40);
 
                 population_text.Render();
                 time_text.Render();
+                fps_text.Render();
 
 
 
@@ -218,22 +220,27 @@ namespace SimulationEvolution
             Log($"Energy: {entity.energy}\nColor: {entity.color}" +
                 $"\nRotation: {entity.rotation} | X: {entity.cell.x} Y: {entity.cell.y}\nKilled: {entity.killed} | Moved: {entity.moved}\n", message_color.suc);
 
-            Log(entity.brain.GetInfoAboutNeuralNetwork(), message_color.suc);
+            LogInfoAboutNeuralNetwork(entity.brain);
+        } // logs info about entity
 
-            for (int i = 0; i < entity.brain.weights.Count; i++)
+        public static void LogInfoAboutNeuralNetwork(NeuralNetwork network)
+        {
+            Log(network.GetInfoAboutNeuralNetwork(), message_color.suc);
+
+            for (int i = 0; i < network.weights.Count; i++)
             {
                 string info = "";
-                for (int j = 0; j < entity.brain.weights[i].layer1_size; j++)
+                for (int j = 0; j < network.weights[i].layer1_size; j++)
                 {
-                    for (int k = 0; k < entity.brain.weights[i].layer2_size; k++)
+                    for (int k = 0; k < network.weights[i].layer2_size; k++)
                     {
-                        info += $"{entity.brain.weights[i].weights[j][k]:F7} ";
+                        info += $"{network.weights[i].weights[j][k]:F5} ";
                     }
                     info += "\n";
                 }
                 Log(info);
             } // info about weights
-        } // logs info about entity
+        }
 
         public Window(string name, int pos_x, int pos_y)
         {

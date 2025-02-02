@@ -27,15 +27,24 @@ namespace SimulationEvolution
             Console.ForegroundColor = default_console_color;
         }
 
-        public static void Log(message_color color = message_color.def, params int[] args)
+        public static void Log(message_color color, params Object[] args)
         {
             ChangeForegroundColor(color);
-            for(int i = 0; i < args.Length; i++)
+            for (int i = 0; i < args.Length; i++)
             {
                 Console.Write(args[i] + " ");
             }
             Console.WriteLine();
             Console.ForegroundColor = default_console_color;
+        }
+
+        public static void Log(params Object[] args)
+        {
+            for (int i = 0; i < args.Length; i++)
+            {
+                Console.Write(args[i] + " ");
+            }
+            Console.WriteLine();
         }
 
         private static void ChangeForegroundColor(message_color color)
