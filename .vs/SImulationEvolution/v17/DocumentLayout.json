@@ -7,12 +7,8 @@
       "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\neuralnetwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:neuralnetwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\weights.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:weights.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\tools.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:tools.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\window.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -23,12 +19,20 @@
       "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:simulation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\tools.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:tools.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\cell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:cell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\entity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:entity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\weights.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:weights.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\logging.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:logging.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\neuron.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -37,10 +41,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\layer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:layer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|d:\\programmingprojects\\simulationevolution\\logging.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B66C299B-A9CE-405E-A8D7-6B6B29B3F29F}|SimulationEvolution.csproj|solutionrelative:logging.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -60,7 +60,7 @@
               "RelativeDocumentMoniker": "Settings.cs",
               "ToolTip": "D:\\ProgrammingProjects\\SimulationEvolution\\Settings.cs",
               "RelativeToolTip": "Settings.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAjwBUAAABTAAAA",
+              "ViewState": "AQIAAIoAAAAAAAAAAAAAwKYAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-02T14:31:50.114Z",
               "IsPinned": true,
@@ -68,54 +68,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Neuron.cs",
-              "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Neuron.cs",
-              "RelativeDocumentMoniker": "Neuron.cs",
-              "ToolTip": "D:\\ProgrammingProjects\\SimulationEvolution\\Neuron.cs",
-              "RelativeToolTip": "Neuron.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABIAAAAAAAAA",
+              "DocumentIndex": 1,
+              "Title": "Tools.cs",
+              "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Tools.cs",
+              "RelativeDocumentMoniker": "Tools.cs",
+              "ToolTip": "D:\\ProgrammingProjects\\SimulationEvolution\\Tools.cs",
+              "RelativeToolTip": "Tools.cs",
+              "ViewState": "AQIAAJIAAAAAAAAAAAAzwBwAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-02T15:07:17.372Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Entity.cs",
-              "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Entity.cs",
-              "RelativeDocumentMoniker": "Entity.cs",
-              "ToolTip": "D:\\ProgrammingProjects\\SimulationEvolution\\Entity.cs",
-              "RelativeToolTip": "Entity.cs",
-              "ViewState": "AQIAACIAAAAAAAAAAAAWwDMAAABAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-02T14:35:19.013Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Logging.cs",
-              "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Logging.cs",
-              "RelativeDocumentMoniker": "Logging.cs",
-              "ToolTip": "D:\\ProgrammingProjects\\SimulationEvolution\\Logging.cs",
-              "RelativeToolTip": "Logging.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAgwCkAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-02T14:30:23.64Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Window.cs",
-              "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Window.cs",
-              "RelativeDocumentMoniker": "Window.cs",
-              "ToolTip": "D:\\ProgrammingProjects\\SimulationEvolution\\Window.cs",
-              "RelativeToolTip": "Window.cs",
-              "ViewState": "AQIAAMoAAAAAAAAAAAAwwN8AAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-02T14:03:00.008Z",
+              "WhenOpened": "2024-12-25T16:14:19.938Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
@@ -128,7 +90,43 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
+              "Title": "Cell.cs",
+              "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Cell.cs",
+              "RelativeDocumentMoniker": "Cell.cs",
+              "ToolTip": "D:\\ProgrammingProjects\\SimulationEvolution\\Cell.cs",
+              "RelativeToolTip": "Cell.cs",
+              "ViewState": "AQIAABQAAAAAAAAAAAAIwEYAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-22T15:23:17.991Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Logging.cs",
+              "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Logging.cs",
+              "RelativeDocumentMoniker": "Logging.cs",
+              "ToolTip": "D:\\ProgrammingProjects\\SimulationEvolution\\Logging.cs",
+              "RelativeToolTip": "Logging.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAgwCkAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-02T14:30:23.64Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Window.cs",
+              "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Window.cs",
+              "RelativeDocumentMoniker": "Window.cs",
+              "ToolTip": "D:\\ProgrammingProjects\\SimulationEvolution\\Window.cs",
+              "RelativeToolTip": "Window.cs",
+              "ViewState": "AQIAAG8AAAAAAAAAAAAAAJAAAABFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-02T14:03:00.008Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "Layer.cs",
               "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Layer.cs",
               "RelativeDocumentMoniker": "Layer.cs",
@@ -136,60 +134,55 @@
               "RelativeToolTip": "Layer.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-02T12:34:03.052Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-02T12:34:03.052Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "Weights.cs",
               "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Weights.cs",
               "RelativeDocumentMoniker": "Weights.cs",
               "ToolTip": "D:\\ProgrammingProjects\\SimulationEvolution\\Weights.cs",
               "RelativeToolTip": "Weights.cs",
-              "ViewState": "AQIAABcAAAAAAAAAAAAwwCwAAAANAAAA",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAWwBIAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-27T19:56:23.42Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-27T19:56:23.42Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Tools.cs",
-              "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Tools.cs",
-              "RelativeDocumentMoniker": "Tools.cs",
-              "ToolTip": "D:\\ProgrammingProjects\\SimulationEvolution\\Tools.cs",
-              "RelativeToolTip": "Tools.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAA1wCwAAAARAAAA",
+              "Title": "Entity.cs",
+              "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Entity.cs",
+              "RelativeDocumentMoniker": "Entity.cs",
+              "ToolTip": "D:\\ProgrammingProjects\\SimulationEvolution\\Entity.cs",
+              "RelativeToolTip": "Entity.cs",
+              "ViewState": "AQIAAOYAAAAAAAAAAAAswP4AAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-25T16:14:19.938Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-02T14:35:19.013Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "NeuralNetwork.cs",
-              "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\NeuralNetwork.cs",
-              "RelativeDocumentMoniker": "NeuralNetwork.cs",
-              "ToolTip": "D:\\ProgrammingProjects\\SimulationEvolution\\NeuralNetwork.cs",
-              "RelativeToolTip": "NeuralNetwork.cs",
-              "ViewState": "AQIAAKsAAAAAAAAAAAAjwL0AAAARAAAA",
+              "DocumentIndex": 8,
+              "Title": "Neuron.cs",
+              "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Neuron.cs",
+              "RelativeDocumentMoniker": "Neuron.cs",
+              "ToolTip": "D:\\ProgrammingProjects\\SimulationEvolution\\Neuron.cs",
+              "RelativeToolTip": "Neuron.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-24T19:05:58.469Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-02T15:07:17.372Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "Simulation.cs",
               "DocumentMoniker": "D:\\ProgrammingProjects\\SimulationEvolution\\Simulation.cs",
               "RelativeDocumentMoniker": "Simulation.cs",
               "ToolTip": "D:\\ProgrammingProjects\\SimulationEvolution\\Simulation.cs",
               "RelativeToolTip": "Simulation.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAQwCUAAAAJAAAA",
+              "ViewState": "AQIAAOEAAAAAAAAAAAAAwB0BAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-25T16:00:14.835Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-25T16:00:14.835Z"
             }
           ]
         }

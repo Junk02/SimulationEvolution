@@ -26,7 +26,7 @@ namespace SimulationEvolution
                 weights.Add(new List<float>());
                 for (int j = 0; j < layer2; j++)
                 {
-                    float weight = (float)(rnd.NextDouble() * (max_weight_size - min_weight_size) - min_weight_size);
+                    float weight = NextFloat(min_weight_size, max_weight_size);
                     weights[i].Add(weight);
                 }
             }

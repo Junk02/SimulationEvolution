@@ -144,6 +144,11 @@ namespace SimulationEvolution
             return (value - min) / (max - min);
         }
 
+        public static double Sigmoid(double x)
+        {
+            return 1 / (1 + Math.Exp(-x));
+        }
+
         public static float ReLu(float value)
         {
             return Math.Max(0, value);
@@ -162,6 +167,17 @@ namespace SimulationEvolution
         public static float Rand(float value)
         {
             return (value > rnd.NextDouble()) ? 1 : 0;
+        }
+
+        public static Color GetWaveColor(float energy)
+        {
+            float normalizedEnergy = Math.Clamp(energy / max_wave_value, 0f, 1f);
+
+            int r = (int)(normalizedEnergy * 255);
+            int g = (int)(normalizedEnergy * 255);
+            int b = 0;
+
+            return Color.FromArgb(r, g, b);
         }
     }
 }

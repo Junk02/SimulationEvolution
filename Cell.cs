@@ -15,14 +15,14 @@ namespace SimulationEvolution
         public int y { get; private set; }
 
         public int energy_for_photo;
-        public int organics;
+        public int organics { get; private set; }
 
-        public Cell(int x, int y)
+        public Cell(int x, int y, int energy_for_photo)
         {
             this.x = x;
             this.y = y;
             organics = 0;
-            energy_for_photo = energy_for_photosynthesis;
+            this.energy_for_photo = energy_for_photo;
         }
 
         public void AddEntity(ref int entity_count) // adds random entity on this cell
@@ -78,6 +78,15 @@ namespace SimulationEvolution
             {
                 organics = max_organics;
             }
+            if (organics < 0)
+            {
+                organics = 0;
+            }
+        }
+
+        public void ClearOrganics()
+        {
+            organics = 0;
         }
 
         public Entity GetEntity()

@@ -23,6 +23,7 @@ namespace SimulationEvolution
         public bool not_exist; // this is for situation when entity moved but still exist on that cell
         public bool moved;
         public int rotation;
+        public int age;
         public NeuralNetwork brain;
 
         public Entity(Cell cell, ref int entity_count) // standart constructor
@@ -36,6 +37,7 @@ namespace SimulationEvolution
             not_exist = false;
             moved = false;
             rotation = rnd.Next(0, 8);
+            age = 0;
             brain = new NeuralNetwork(this);
         }
 
@@ -52,6 +54,7 @@ namespace SimulationEvolution
             brain = MutateNetwork(parent.brain, ref is_mutated);
             brain.entity = this;
             eat_color = parent.eat_color;
+            age = 0;
             if (is_mutated)
             {
                 color = MutateColor(parent.color);
@@ -71,46 +74,41 @@ namespace SimulationEvolution
                 return;
             }
 
-            int counter = 0; // counter for rotating IMPORTANT
-            string action = "rotr";
+            string action = brain.Prediction(sim);
 
-            while ((action == "rotr" || action == "rotl") && counter != 5)
+            switch (action)
             {
-                counter++;
-
-                action = brain.Prediction(sim);
-
-                switch (action)
-                {
-                    case "move":
-                        Move(sim);
-                        break;
-                    case "rotl":
-                        Rotate("left");
-                        break;
-                    case "rotr":
-                        Rotate("right");
-                        break;
-                    case "photo":
-                        Photosynthesis();
-                        break;
-                    case "produ":
-                        Reproduction(sim);
-                        break;
-                    case "bite":
-                        Bite(sim);
-                        break;
-                    case "recyc":
-                        Organics(sim);
-                        break;
-                }
+                case "move":
+                    Move(sim);
+                    break;
+                case "rotl":
+                    Rotate("left");
+                    break;
+                case "rotr":
+                    Rotate("right");
+                    break;
+                case "photo":
+                    Photosynthesis();
+                    break;
+                case "produ":
+                    Reproduction(sim);
+                    break;
+                case "bite":
+                    Bite(sim);
+                    break;
+                case "recyc":
+                    Organics(sim);
+                    break;
             }
+
 
             if (!moved)
             {
                 energy -= energy_for_staying;
                 moved = true;
             }
+
+            age++;
 
             Check();
         }
@@ -133,7 +131,7 @@ namespace SimulationEvolution
 
         public void Check() // checks if entity still alive and kills it in the other case
         {
-            if (energy <= 0) Die();
+            if (energy <= 0 || age >= max_age) Die();
         }
 
         public void Move(Simulation sim) // moves entity
@@ -156,7 +154,7 @@ namespace SimulationEvolution
             }
         }
 
-        public void Rotate(string side = "left") // rotates entity
+        public void Rotate(string side) // rotates entity
         {
             if (energy >= energy_for_rotating)
             {
@@ -175,6 +173,26 @@ namespace SimulationEvolution
                 energy -= energy_for_rotating;
                 moved = true;
             }
+        }
+
+        public void RotateAbsolute(float value)
+        {
+            rotation = GetAbsoluteDirection(value);
+        }
+
+        private int GetAbsoluteDirection(float value)
+        {
+            double step = 1.0 / 8;
+
+            int direction = (int)(value / step);
+
+            return Math.Clamp(direction, 0, 7);
+        } 
+
+        public void RotateRelative(float value)
+        {
+            int offset = GetAbsoluteDirection(value);
+            rotation = (rotation + offset) % 8;
         }
 
         public void Photosynthesis() // makes entity do photosynthes
@@ -234,12 +252,12 @@ namespace SimulationEvolution
                 if (organics_cell.organics < organics_bite_power)
                 {
                     GetEnergy(organics_cell.organics);
-                    organics_cell.organics = 0;
+                    organics_cell.ClearOrganics();
                 }
                 else
                 {
                     GetEnergy(organics_bite_power);
-                    organics_cell.organics -= organics_bite_power;
+                    organics_cell.AddOrganics(-organics_bite_power);
                 }
                 moved = true;
                 ChangeEatColor("organics");

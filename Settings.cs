@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static SimulationEvolution.Logging;
 
 namespace SimulationEvolution
 {
@@ -17,6 +18,7 @@ namespace SimulationEvolution
         public static int x_size;
         public static int y_size;
         public static Random rnd = new Random();
+        public static bool is_spawn_checker = false;
 
         public static bool is_entity_energy_infinite = false; // if true the energy of the entities can be as large as possible
         public static int max_entity_energy = 1000; // this variable is used if the maximum amount of energy of the entity is not infinite
@@ -36,11 +38,11 @@ namespace SimulationEvolution
         public static int energy_for_staying = 10;
         public static int energy_for_moving = 5;
         public static int energy_for_rotating = 1;
-        public static int energy_for_photosynthesis = 15;
+        public const  int energy_for_photosynthesis = 0;
         public static int energy_for_reproduction = 50;
         public static int bite_power = 1000;
-        public static int organics_bite_power = 5;
-
+        public static int organics_bite_power = 50;
+        public static int max_age = 100;
         
         //LAYERS SETTINGS
         public const int defaulf_neurons_input_layer_quantity = 5;
@@ -48,11 +50,19 @@ namespace SimulationEvolution
         public const int defaulf_neurons_output_layer_quantity = 5;
 
         //WEIGHTS SETTINGS
-        public const float min_weight_size = 0;
-        public const float max_weight_size = 1;
+        public const float min_weight_size = -1f;
+        public const float max_weight_size = 1f;
 
         //NEURAL_NETWORK SETTINGS
         public const int default_layers_quantity = 5;
+
+        //PHOTOSYNTHESIS SETTINGS
+        public const int waves_count = 50;
+        public const int start_wave_position = 50;
+        public const int wave_size = 1;
+        public const int start_wave_value = waves_count;
+        public static int max_wave_value;
+        public const int delta_wave_value = -1;
 
 
         //CELLS SETTINGS
@@ -93,6 +103,13 @@ namespace SimulationEvolution
             0, //organics
             0, //eat_color
             0, //energy_color
+            0, //waves
+        };
+
+        public static List<int> mouse_mode = new List<int>
+        {
+            1, //overview
+            0, //spawn
         };
 
         public static void ChangeTurnWait(bool flag)
@@ -113,19 +130,25 @@ namespace SimulationEvolution
             rendering_mode[n] = 1;
         }
 
-        public static List<string> hidden_neuron_variants = new List<string>() // possible variants for neurons in hidden layer
+        public static void ChangeMouseMode(int n)
         {
-            "relu", "line", "tanh", "rand"
-        };
+            for (int i = 0; i < mouse_mode.Count; i++) mouse_mode[i] = 0;
+            mouse_mode[n] = 1;
+        }
 
         public static List<string> input_neuron_variants = new List<string>() // possible variants for neurons in input layer
         {
             "x", "y", "energ", "visio", "visio"
         };
 
+        public static List<string> hidden_neuron_variants = new List<string>() // possible variants for neurons in hidden layer
+        {
+            "relu", "line", "tanh", "rand"
+        };
+
         public static List<string> output_neuron_variants = new List<string>() // possible variants for neurons in output layer
         {
-            "move", "rotl", "rotr", "bite", "produ", "recyc", "photo"
+            "move", "bite", "rotr", "rotl", "produ", "recyc", "photo", "rota", "rote"
         };
 
         static Settings()
@@ -133,17 +156,24 @@ namespace SimulationEvolution
             max_entity_count = cell_x * cell_y;
             x_size = cell_x * cell_size + cell_x + 1;
             y_size = cell_y * cell_size + cell_y + 1;
+            max_wave_value = (delta_wave_value >= 0) ? start_wave_value + delta_wave_value * (waves_count - 1) : start_wave_value; //TODO MATH REGRESSION PROGRESSION I DON'T KNOW HOW TO NAME IT RIGHT
+            Log(max_wave_value);
+            
         }
 
         /* Buttons
          * [A]      fixed window
          * [S]      delete all entities
+         * [Z]      delete all
          * [D]      generate entities
          * [SPACE]  pause simulation
          * [DOWN]   reduce TurnWait
          * [UP]     increase TurnWait
          * [1]      change RenderingMode to standart
          * [2]      change RenderingMode to organics
+         * [3]      change RenderingMode to eat_color
+         * [4]      change RenderingMode to energy_color
+         * [5]      change RenderingMode to photosynthesis_waves
          */
     }
 }

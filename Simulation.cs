@@ -7,8 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using static SimulationEvolution.Settings;
 using static SimulationEvolution.Logging;
+using static SimulationEvolution.Tools;
 using System.Xml;
 using System.Diagnostics;
+using System.Runtime.InteropServices.JavaScript;
 
 namespace SimulationEvolution
 {
@@ -30,9 +32,30 @@ namespace SimulationEvolution
             stopwatch = new Stopwatch();
             stopwatch.Start();
             map = new Cell[cell_x, cell_y];
+
             for (int i = 0; i < cell_x; i++)
                 for (int j = 0; j < cell_y; j++)
-                    map[i, j] = new Cell(i, j);
+                    map[i, j] = new Cell(i, j, energy_for_photosynthesis); // start initialization of the map
+
+            int temp = start_wave_value;
+            int count = 0;
+
+            int start = (start_wave_position < cell_y) ? (start_wave_position >= 0) ? start_wave_position : 0 : 0;
+
+            for (int i = start; i < cell_y; i++) // wave photosynthesis initialization
+            {
+                for (int j = 0; j < cell_x; j++)
+                {
+                    map[j, i].energy_for_photo = temp;
+                }
+                count++;
+                temp += delta_wave_value;
+                if (count == waves_count || temp <= 0)
+                {
+                    break;
+                }
+            }
+
             entity_count = 0;
             simulation_turn = 0;
         }
@@ -130,6 +153,29 @@ namespace SimulationEvolution
                 }
             }
 
+            else if (rendering_mode[4] == 1) // wave_mode
+            {
+                for (int i = 0; i < cell_x; i++)
+                {
+                    for (int j = 0; j < cell_y; j++)
+                    {
+                        Color color = GetWaveColor(map[i, j].energy_for_photo);
+                        win.SetColor(color);
+                        win.DrawRectangle(i * (cell_size + 1) + 1, j * (cell_size + 1) + 1, cell_size);
+                        //if (!map[i, j].IsFree())
+                        //{
+                        //    float normalizedEnergy = (float)Math.Clamp(((double)map[i, j].GetEntity().energy / (double)max_entity_energy), 0f, 1f);
+                        //    float smoothEnergy = (float)Math.Sqrt(normalizedEnergy);
+                        //    int r = 255;
+                        //    int g = (byte)(255 * (1 - smoothEnergy));
+                        //    int b = 0;
+                        //    win.SetColor((byte)r, (byte)g, (byte)b);
+                        //    win.DrawRectangle(i * (cell_size + 1) + 1, j * (cell_size + 1) + 1, cell_size);
+                        //}
+                    }
+                }
+            }
+
             win.SetColor(default_color);
         }
 
@@ -146,6 +192,24 @@ namespace SimulationEvolution
                 }
             }
             Log("All entities were successfully deleted", message_color.suc);
+        }
+
+        public void DeleteAllOrganics() // method which deletes all organics from world
+        {
+            for (int i = 0; i < cell_x; i++)
+            {
+                for (int j = 0; j < cell_y; j++)
+                {
+                    map[i, j].ClearOrganics();
+                }
+            }
+            Log("All organic was successfully deleted", message_color.suc);
+        }
+
+        public void DeleteAll() // method which deletes all
+        {
+            DeleteAllEntities();
+            DeleteAllOrganics();
         }
 
         public void GenerateEntities(int count) // method which randomly generates new entities

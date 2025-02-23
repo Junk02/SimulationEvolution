@@ -53,6 +53,10 @@ namespace SimulationEvolution
                         {
                             sim.DeleteAllEntities();
                         }
+                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_z) // delete all [Z]
+                        {
+                            sim.DeleteAll();
+                        }
                         else if (e.key.keysym.sym == SDL_Keycode.SDLK_d) // generate entities event [D]
                         {
                             sim.GenerateEntities(entity_to_spawn_by_click);
@@ -69,6 +73,10 @@ namespace SimulationEvolution
                         {
                             ChangeTurnWait(true);
                         }
+                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_x) // increase TurnWait event [UP]
+                        {
+                            is_spawn_checker = !is_spawn_checker;
+                        }
                         else if (e.key.keysym.sym == SDL_Keycode.SDLK_1) // change RenderingMode event [1]
                         {
                             ChangeRenderingMode(0);
@@ -84,6 +92,10 @@ namespace SimulationEvolution
                         else if (e.key.keysym.sym == SDL_Keycode.SDLK_4) // change RenderingMode event [4]
                         {
                             ChangeRenderingMode(3);
+                        }
+                        else if (e.key.keysym.sym == SDL_Keycode.SDLK_5) // change RenderingMode event [4]
+                        {
+                            ChangeRenderingMode(4);
                         }
                         else if (e.key.keysym.sym == SDL_Keycode.SDLK_LCTRL)
                         {
@@ -102,22 +114,35 @@ namespace SimulationEvolution
                     else if (e.type == SDL_EventType.SDL_MOUSEBUTTONDOWN) // check mouse position event
                     {
                         //Log(message_color.def, e.motion.x, e.motion.y);
-                        int x_pos = e.motion.x, y_pos = e.motion.y;
-                        int x_ind = (e.motion.x - 1) / 8, y_ind = (e.motion.y - 1) / 8;
-                        Log($"{x_pos} : {y_pos}");
-                        if (x_pos >= cell_x * (cell_size + 1) + 1 || y_pos > cell_y * (cell_size + 1) + 1 ||
-                           (x_pos - 1) % 8 == 7 || (y_pos - 1) % 8 == 7) Log("Not found", message_color.warn);
+
+                        Cell cell = GetCellByCoordinates(e.motion.x, e.motion.y);
+                        Log($"{e.motion.x} : {e.motion.y}");
+
+                        if (cell == null)
+                        {
+                            Log("Not found", message_color.warn);
+                        }
                         else
                         {
-                            Log((sim.map[x_ind, y_ind].IsFree()).ToString());
-                            if (!sim.map[x_ind, y_ind].IsFree())
+                            Log(cell.IsFree().ToString());
+                            LogInfoAboutCell(cell);
+                            if (!cell.IsFree())
                             {
-                                selected_entity = sim.map[x_ind, y_ind].GetEntity();
-                                LogInfoAboutEntity(sim.map[x_ind, y_ind].GetEntity());
+                                selected_entity = cell.GetEntity();
+                                LogInfoAboutEntity(cell.GetEntity());
                             }
-                            else
+                        }
+                    }
+
+                    else if (e.type == SDL_EventType.SDL_MOUSEMOTION)
+                    {
+                        if (is_spawn_checker)
+                        {
+                            Cell cell = GetCellByCoordinates(e.motion.x, e.motion.y);
+
+                            if (cell != null)
                             {
-                                Log($"Organics: {sim.map[x_ind, y_ind].organics}");
+                                cell.AddEntity(ref sim.entity_count);
                             }
                         }
                     }
@@ -136,6 +161,7 @@ namespace SimulationEvolution
                 DrawLine(0, y_size, x_size, y_size);
 
                 if (!is_simulation_on_pause) sim.MakeTurn(); // make simulation turn
+
                 sim.DrawEntities(); // draw all entities
 
 
@@ -218,7 +244,7 @@ namespace SimulationEvolution
         public static void LogInfoAboutEntity(Entity entity)
         {
             Log($"Energy: {entity.energy}\nColor: {entity.color}" +
-                $"\nRotation: {entity.rotation} | X: {entity.cell.x} Y: {entity.cell.y}\nKilled: {entity.killed} | Moved: {entity.moved}\n", message_color.suc);
+                $"\nRotation: {entity.rotation} | X: {entity.cell.x} Y: {entity.cell.y}\nKilled: {entity.killed} | Moved: {entity.moved} | Age: {entity.age}\n", message_color.suc);
 
             LogInfoAboutNeuralNetwork(entity.brain);
         } // logs info about entity
@@ -240,6 +266,23 @@ namespace SimulationEvolution
                 }
                 Log(info);
             } // info about weights
+        }
+
+        public static void LogInfoAboutCell(Cell cell)
+        {
+            Log($"Organics: {cell.organics}\n" +
+                $"Energy for photo: {cell.energy_for_photo}");
+        } // logs info about cell
+
+        public Cell GetCellByCoordinates(int x, int y)
+        {
+            int x_ind = (x - 1) / 8, y_ind = (y - 1) / 8;
+            if (x >= cell_x * (cell_size + 1) + 1 || y > cell_y * (cell_size + 1) + 1 ||
+               (x - 1) % 8 == 7 || (y - 1) % 8 == 7)
+            {
+                return null;
+            }
+            return sim.map[x_ind, y_ind];
         }
 
         public Window(string name, int pos_x, int pos_y)

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using static SimulationEvolution.Settings;
 using static SimulationEvolution.Logging;
 using static SimulationEvolution.Tools;
+using System.Diagnostics.CodeAnalysis;
 
 namespace SimulationEvolution
 {
@@ -136,9 +137,25 @@ namespace SimulationEvolution
             }
 
             int max = 0;
+            bool rotated_flag = false;
             for (int i = 0; i < layers[layers.Count - 1].neurons.Count; i++)
             {
-                if (layers[layers.Count - 1].neurons[max].value < layers[layers.Count - 1].neurons[i].value)
+                Neuron neuron = layers[layers.Count - 1].neurons[i];
+                if (neuron.type == "rota" && !rotated_flag)
+                {
+                    rotated_flag = true;
+                    neuron.SetValue((float)Sigmoid(neuron.value));
+                    entity.RotateAbsolute(neuron.value);
+                    continue;
+                } // check for absolute turn
+                else if (neuron.type == "rote" && !rotated_flag)
+                {
+                    rotated_flag = true;
+                    neuron.SetValue((float)Sigmoid(neuron.value));
+                    entity.RotateRelative(neuron.value);
+                    continue;
+                } // check for relative turn
+                if (layers[layers.Count - 1].neurons[max].value < neuron.value)
                 {
                     max = i;
                 }
