@@ -3,6 +3,8 @@ using static SimulationEvolutionForms.Settings;
 using static SimulationEvolutionForms.Logging;
 using static SimulationEvolution.Tools;
 using SimulationEvolution;
+using System.Xml;
+using System.Security.Cryptography;
 
 namespace SimulationEvolutionForms
 {
@@ -16,7 +18,8 @@ namespace SimulationEvolutionForms
         BufferedGraphics myBuffer;
         SolidBrush brush;
         Random rand;
-        int x = 200;
+        public static RichTextBox logs;
+        Entity selected_entity;
 
         Simulation sim;
 
@@ -24,6 +27,7 @@ namespace SimulationEvolutionForms
         public Form1()
         {
             InitializeComponent();
+            logs = richTextBox1; // Log textBox for Logging class
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -55,7 +59,8 @@ namespace SimulationEvolutionForms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            sim.GenerateEntities(100);
+            sim.GenerateEntities(10000);
+            this.ActiveControl = null;
         }
 
         private void SimulationTimer_Tick(object sender, EventArgs e)
@@ -73,21 +78,30 @@ namespace SimulationEvolutionForms
 
             // Рисуем чёрный квадрат размером 100x100 пикселей
 
-
-
             label1.Text = $"{x_size} : {y_size}";
+
+            //Log(message_color.suc, 123);
+            //Log(message_color.err, 321);
 
 
             myBuffer.Graphics.DrawLine(new Pen(lines_color), 0, y_size, x_size, y_size);
             myBuffer.Graphics.DrawLine(new Pen(lines_color), x_size, 0, x_size, y_size);
 
-            DrawEntities();
-            sim.MakeTurn();
-            label2.Text = "Кол-во сущностей: " + sim.entity_count.ToString();
+            string text = sim.GetSimulationTurn().ToString();
 
-            // Прорисовываем буфер на экране (два раза для надёжности)
+            if (!is_simulation_on_pause)
+            {
+                sim.MakeTurn();
+            }
+            DrawEntities();
+
+
+
+            label2.Text = "Entity count: " + sim.entity_count;
+            label3.Text = "Simulation turn: " + sim.GetSimulationTurn();
+
+            if (fixed_window) this.Location = new Point(0, 0);
             myBuffer.Render();
-            //myBuffer.Render(graphics);
         }
 
         public void DrawEntities() // method which draws all entities
@@ -196,6 +210,7 @@ namespace SimulationEvolutionForms
                 lines_color = Color.White;
                 is_night_theme = true;
             }
+            this.ActiveControl = null;
         }
 
         private void RenderingModeTrackBar_ValueChanged(object sender, EventArgs e)
@@ -206,20 +221,241 @@ namespace SimulationEvolutionForms
         private void button2_Click(object sender, EventArgs e)
         {
             sim.DeleteAll();
-        }
-
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            label1.Text = e.KeyChar.ToString();
-            if (e.KeyChar == ' ')
-            {
-                label3.Text = e.KeyChar.ToString();
-            }
+            this.ActiveControl = null;
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            label1.Text = e.KeyCode.ToString();
+            switch (e.KeyCode)
+            {
+                case Keys.Space:
+                    sim.Pause();
+                    break;
+                case Keys.A:
+                    fixed_window = !fixed_window;
+                    break;
+                case Keys.S:
+                    sim.DeleteAll();
+                    break;
+                case Keys.D:
+                    sim.GenerateEntities(entity_to_spawn_by_click);
+                    break;
+                case Keys.Down:
+                    SimulationTimer.Interval++;
+                    break;
+                case Keys.Up:
+                    if (SimulationTimer.Interval > 1) SimulationTimer.Interval--;
+                    break;
+                case Keys.X:
+                    is_spawn_checker = !is_spawn_checker;
+                    break;
+                case Keys.D1:
+                    ChangeRenderingMode(0);
+                    RenderingModeTrackBar.Value = 0;
+                    break;
+                case Keys.D2:
+                    ChangeRenderingMode(1);
+                    RenderingModeTrackBar.Value = 1;
+                    break;
+                case Keys.D3:
+                    ChangeRenderingMode(2);
+                    RenderingModeTrackBar.Value = 2;
+                    break;
+                case Keys.D4:
+                    ChangeRenderingMode(3);
+                    RenderingModeTrackBar.Value = 3;
+                    break;
+                case Keys.D5:
+                    ChangeRenderingMode(4);
+                    RenderingModeTrackBar.Value = 4;
+                    break;
+                case Keys.C:
+                    ChangeMouseMode(0);
+                    break;
+                case Keys.V:
+                    ChangeMouseMode(1);
+                    break;
+                case Keys.B:
+                    ChangeMouseMode(2);
+                    break;
+            }
+        }
+
+        private void Form1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (mouse_mode[0] == 1)
+            {
+                Cell cell = GetCellByCoordinates(e.X, e.Y);
+                Log($"{e.X} : {e.Y}");
+
+                if (cell == null)
+                {
+                    Log(message_color.warn, "Not found");
+                }
+                else
+                {
+                    Log(cell.IsFree().ToString());
+                    LogInfoAboutCell(cell);
+                    if (!cell.IsFree())
+                    {
+                        selected_entity = cell.GetEntity();
+                        LogInfoAboutEntity(selected_entity);
+                    }
+                }
+            }
+            else if (mouse_mode[1] == 1)
+            {
+                SpawnEntities(e.X, e.Y);
+            }
+        }
+
+        private Cell GetCellByCoordinates(int x, int y)
+        {
+            int x_ind = (x - 1) / 8;
+            int y_ind = (y - 1) / 8;
+
+            // Проверка выхода за границы поля
+            if (x >= cell_x * (cell_size + 1) + 1 || y > cell_y * (cell_size + 1) + 1)
+            {
+                return null;
+            }
+
+            // Если попали на перегородку — округляем координаты
+            if ((x - 1) % 8 == 7) x_ind = Math.Min(x_ind + 1, cell_x - 1);
+            if ((y - 1) % 8 == 7) y_ind = Math.Min(y_ind + 1, cell_y - 1);
+
+            return sim.map[x_ind, y_ind];
+        }
+
+
+        private static void LogInfoAboutCell(Cell cell)
+        {
+            Log($"Organics: {cell.organics}\n" +
+                $"Energy for photo: {cell.energy_for_photo}");
+        } // logs info about cell
+
+        private static void LogInfoAboutEntity(Entity entity)
+        {
+            Log(message_color.suc, $"Energy: {entity.energy}\nColor: {entity.color}" +
+                $"\nRotation: {entity.rotation} | X: {entity.cell.x} Y: {entity.cell.y}\n" +
+                $"Killed: {entity.killed} | Moved: {entity.moved} | Age: {entity.age}\n" +
+                $"Photo: {entity.photo} | Bited: {entity.bited} | Recycled: {entity.recycled} | Produced: {entity.reproduced}\n");
+
+            LogInfoAboutNeuralNetwork(entity.brain);
+        } // logs info about entity
+
+        private static void LogInfoAboutNeuralNetwork(NeuralNetwork network)
+        {
+            Log(network.GetInfoAboutNeuralNetwork(), message_color.suc);
+
+            for (int i = 0; i < network.weights.Count; i++)
+            {
+                string info = "";
+                for (int j = 0; j < network.weights[i].layer1_size; j++)
+                {
+                    for (int k = 0; k < network.weights[i].layer2_size; k++)
+                    {
+                        info += $"{network.weights[i].weights[j][k]:F5} ";
+                    }
+                    info += "\n";
+                }
+                Log(info);
+            } // info about weights
+        }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (is_spawn_checker)
+            {
+                if (mouse_mode[1] == 1)
+                {
+                    SpawnEntities(e.X, e.Y);
+                }
+                else if (mouse_mode[2] == 1)
+                {
+                    EraseEntities(e.X, e.Y);
+                }
+            }
+        }
+
+        private void SpawnSquareSizeTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            mouse_square_size = SpawnSquareSizeTrackBar.Value;
+        }
+
+        private void SpawnEntities(int x, int y)
+        {
+            Cell cell = GetCellByCoordinates(x, y);
+            if (cell != null)
+            {
+                if (mouse_square_size == 1)
+                {
+                    if (cell.IsFree()) cell.AddEntity(ref sim.entity_count);
+                }
+                else
+                {
+                    int delta = mouse_square_size / 2;
+                    int start_x = cell.x - delta;
+                    int start_y = cell.y - delta;
+                    if (mouse_square_size % 2 != 0)
+                    {
+                        start_x--;
+                        start_y--;
+                    }
+                    int end_x = cell.x + delta;
+                    int end_y = cell.y + delta;
+
+                    start_x = (0 > start_x) ? 0 : start_x;
+                    start_y = (0 > start_y) ? 0 : start_y;
+                    end_x = (end_x > cell_x) ? cell_x : end_x;
+                    end_y = (end_y > cell_y) ? cell_y : end_y;
+
+                    for (int i = start_x; i < end_x; i++)
+                    {
+                        for (int j = start_y; j < end_y; j++)
+                        {
+                            if (sim.map[i, j].IsFree()) sim.map[i, j].AddEntity(ref sim.entity_count);
+                        }
+                    }
+                }
+            }
+        }
+        private void EraseEntities(int x, int y)
+        {
+            Cell cell = GetCellByCoordinates(x, y);
+            if (cell != null)
+            {
+                if (mouse_square_size == 1)
+                {
+                    if (!cell.IsFree()) cell.DeleteEntity(ref sim.entity_count);
+                }
+                else
+                {
+                    int delta = mouse_square_size / 2;
+                    int start_x = cell.x - delta;
+                    int start_y = cell.y - delta;
+                    if (mouse_square_size % 2 != 0)
+                    {
+                        start_x--;
+                        start_y--;
+                    }
+                    int end_x = cell.x + delta;
+                    int end_y = cell.y + delta;
+
+                    start_x = (0 > start_x) ? 0 : start_x;
+                    start_y = (0 > start_y) ? 0 : start_y;
+                    end_x = (end_x > cell_x) ? cell_x : end_x;
+                    end_y = (end_y > cell_y) ? cell_y : end_y;
+
+                    for (int i = start_x; i < end_x; i++)
+                    {
+                        for (int j = start_y; j < end_y; j++)
+                        {
+                            if (!sim.map[i, j].IsFree()) sim.map[i, j].DeleteEntity(ref sim.entity_count);
+                        }
+                    }
+                }
+            }
         }
     }
 }

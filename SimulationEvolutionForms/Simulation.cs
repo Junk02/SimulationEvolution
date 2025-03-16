@@ -93,7 +93,7 @@ namespace SimulationEvolution
                     }
                 }
             }
-            Log("All entities were successfully deleted", message_color.suc);
+            Log(message_color.suc, "All entities were successfully deleted");
         }
 
         public void DeleteAllOrganics() // method which deletes all organics from world
@@ -105,7 +105,7 @@ namespace SimulationEvolution
                     map[i, j].ClearOrganics();
                 }
             }
-            Log("All organic was successfully deleted", message_color.suc);
+            Log(message_color.suc, "All organic was successfully deleted");
         }
 
         public void DeleteAll() // method which deletes all
@@ -135,11 +135,11 @@ namespace SimulationEvolution
                     while (!map[x, y].IsFree());
                     map[x, y].AddEntity(ref entity_count);
                 }
-                Log($"{count} entities were successfully added", message_color.suc);
+                Log(message_color.suc, $"{count} entities were successfully added");
             }
             else
             {
-                Log("Error in \"GenerateEntities\", maybe variable \"count\" is greater then free place", message_color.err);
+                Log(message_color.err, "Error in \"GenerateEntities\", maybe variable \"count\" is greater then free place");
             }
         }
 
@@ -186,6 +186,11 @@ namespace SimulationEvolution
             if (0 <= new_x && new_x < cell_x && 0 <= new_y && new_y < cell_y) return map[new_x, new_y];
             return null!;
         } // returns cell by rotation
+
+        public void Pause()
+        {
+            is_simulation_on_pause = !is_simulation_on_pause;
+        }
     }
 }
 

@@ -24,6 +24,10 @@ namespace SimulationEvolution
         public bool moved;
         public int rotation;
         public int age;
+        public int photo;
+        public int bited;
+        public int recycled;
+        public int reproduced;
         public NeuralNetwork brain;
 
         public Entity(Cell cell, ref int entity_count) // standart constructor
@@ -38,6 +42,10 @@ namespace SimulationEvolution
             moved = false;
             rotation = rnd.Next(0, 8);
             age = 0;
+            photo = 0;
+            bited = 0;
+            recycled = 0;
+            reproduced = 0;
             brain = new NeuralNetwork(this);
         }
 
@@ -199,6 +207,7 @@ namespace SimulationEvolution
         {
             GetEnergy(cell.energy_for_photo);
             ChangeEatColor("photo");
+            photo++;
             moved = true;
         }
 
@@ -213,6 +222,7 @@ namespace SimulationEvolution
                     {
                         energy /= 2;
                         reproduction_cell.AddEntity(new Entity(reproduction_cell, this, ref sim.entity_count));
+                        reproduced++;
                         moved = true;
                     }
                 }
@@ -234,12 +244,11 @@ namespace SimulationEvolution
                     else
                     {
                         GetEnergy(bite_cell.GetEntity().energy);
-                        //bite_cell.GetEntity().energy -= bite_power;
-                        //bite_cell.GetEntity().Check();
                         bite_cell.DeleteEntity(ref sim.entity_count);
                     }
                     moved = true;
                     ChangeEatColor("bite");
+                    bited++;
                 }
             }
         }
@@ -261,6 +270,7 @@ namespace SimulationEvolution
                 }
                 moved = true;
                 ChangeEatColor("organics");
+                recycled++;
             }
         }
 

@@ -17,14 +17,14 @@ namespace SimulationEvolutionForms
         public static int max_entity_count;
         public static int x_size;
         public static int y_size;
-        public static Random rnd = new Random();
+        public static Random rnd;
         public static bool is_spawn_checker = false;
 
         public static bool is_entity_energy_infinite = false; // if true the energy of the entities can be as large as possible
         public static int max_entity_energy = 1000; // this variable is used if the maximum amount of energy of the entity is not infinite
 
         //MUTATION SETTINGS
-        public static float mutation_chance = 0.02f;
+        public static float mutation_chance = 0.01f;
         public static float neuron_mutation_chance = 0.5f; // these two should make 1f in sum
         public static float connection_mutation_chance = 0.5f; // these two should make 1f in sum
         public static int min_weights_mutate_count = 5; // min amount of weights to mutate
@@ -33,14 +33,14 @@ namespace SimulationEvolutionForms
 
 
         //ENTITIES SETTINGS
-        public static int standart_energy = 1000;
+        public static int standart_energy = 100;
         public static int organics_after_dying = 10;
         public static int energy_for_staying = 10;
         public static int energy_for_moving = 5;
         public static int energy_for_rotating = 1;
         public const  int energy_for_photosynthesis = 0;
         public static int energy_for_reproduction = 50;
-        public static int bite_power = 1000;
+        public static int bite_power = 100;
         public static int organics_bite_power = 50;
         public static int max_age = 100;
         
@@ -71,11 +71,11 @@ namespace SimulationEvolutionForms
 
 
         //CONSOLE&LOG SETTINGS
-        public static Color default_color = Color.Black;
-        public static ConsoleColor default_console_color = ConsoleColor.White;
-        public static ConsoleColor success_console_color = ConsoleColor.Green;
-        public static ConsoleColor warning_console_color = ConsoleColor.Yellow;
-        public static ConsoleColor error_console_color = ConsoleColor.Red;
+        //public static Color default_color = Color.Black;
+        public static Color default_console_color = Color.Black;
+        public static Color success_console_color = Color.Green;
+        public static Color warning_console_color = Color.Orange;
+        public static Color error_console_color = Color.Red;
 
 
         //WINDOW SETTINGS
@@ -96,6 +96,7 @@ namespace SimulationEvolutionForms
         public static int entity_to_spawn_by_click = 1000;
         public static bool fixed_window = true; // if true you can chage window position
         public static bool is_simulation_on_pause = false; // it true simulation on pause
+        public static int mouse_square_size = 1;
 
 
         //INTERFACE SETTINGS
@@ -117,6 +118,7 @@ namespace SimulationEvolutionForms
         {
             1, //overview
             0, //spawn
+            0, //erase
         };
 
         public static void ChangeTurnWait(bool flag)
@@ -169,12 +171,13 @@ namespace SimulationEvolutionForms
 
         static Settings()
         {
+            rnd = new Random();
             max_entity_count = cell_x * cell_y;
             x_size = cell_x * cell_size + cell_x + 1;
             y_size = cell_y * cell_size + cell_y + 1;
             max_wave_value = (delta_wave_value >= 0) ? start_wave_value + delta_wave_value * (waves_count - 1) : start_wave_value; //TODO MATH REGRESSION PROGRESSION I DON'T KNOW HOW TO NAME IT RIGHT
-            Log(max_wave_value);
-            
+            Log("max_wave_value - ", max_wave_value);
+            Log("Seed - ", rnd.GetHashCode());
         }
 
         /* Buttons
