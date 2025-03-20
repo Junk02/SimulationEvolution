@@ -59,7 +59,7 @@ namespace SimulationEvolutionForms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            sim.GenerateEntities(10000);
+            sim.GenerateEntities(1000);
             this.ActiveControl = null;
         }
 
@@ -74,15 +74,7 @@ namespace SimulationEvolutionForms
             brush.Color = simulation_color;
             myBuffer.Graphics.FillRectangle(brush, new Rectangle(0, 0, x_size, y_size));
 
-            // Меняем цвет кисти на чёрный для рисования квадрата
-
-            // Рисуем чёрный квадрат размером 100x100 пикселей
-
             label1.Text = $"{x_size} : {y_size}";
-
-            //Log(message_color.suc, 123);
-            //Log(message_color.err, 321);
-
 
             myBuffer.Graphics.DrawLine(new Pen(lines_color), 0, y_size, x_size, y_size);
             myBuffer.Graphics.DrawLine(new Pen(lines_color), x_size, 0, x_size, y_size);
@@ -99,6 +91,8 @@ namespace SimulationEvolutionForms
 
             label2.Text = "Entity count: " + sim.entity_count;
             label3.Text = "Simulation turn: " + sim.GetSimulationTurn();
+            label4.Text = "Middle age: " + Math.Round(sim.middle_age, 3);
+            label5.Text = "Middle energy: " + Math.Round(sim.middle_energy, 3);
 
             if (fixed_window) this.Location = new Point(0, 0);
             myBuffer.Render();

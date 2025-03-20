@@ -20,6 +20,8 @@ namespace SimulationEvolution
         public Cell[,] map;
         public int entity_count;
         private ulong simulation_turn;
+        public float middle_age;
+        public float middle_energy;
 
         public Simulation()
         {
@@ -50,11 +52,11 @@ namespace SimulationEvolution
 
             entity_count = 0;
             simulation_turn = 0;
+            middle_age = 0;
         }
 
         public void MakeTurn() // method which makes one simulation turn
         {
-
             for (int i = 0; i < cell_x; i++)
             {
                 for (int j = 0; j < cell_y; j++)
@@ -77,8 +79,18 @@ namespace SimulationEvolution
             }
             for (int i = 0; i < cell_x; i++)
                 for (int j = 0; j < cell_y; j++)
-                    if (!map[i, j].IsFree()) map[i, j].GetEntity().moved = false;
+                    if (!map[i, j].IsFree())
+                    {
+                        map[i, j].GetEntity().moved = false;
+                        middle_age += map[i, j].GetEntity().age;
+                        middle_energy += map[i, j].GetEntity().energy;
+                    }
             simulation_turn++;
+            if (entity_count != 0)
+            {
+                middle_age /= entity_count;
+                middle_energy /= entity_count;
+            }
         }
 
         public void DeleteAllEntities() // method which deletes all live entities

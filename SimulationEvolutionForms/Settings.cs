@@ -25,10 +25,10 @@ namespace SimulationEvolutionForms
 
         //MUTATION SETTINGS
         public static float mutation_chance = 0.01f;
-        public static float neuron_mutation_chance = 0.5f; // these two should make 1f in sum
-        public static float connection_mutation_chance = 0.5f; // these two should make 1f in sum
-        public static int min_weights_mutate_count = 5; // min amount of weights to mutate
-        public static int max_weights_mutate_count = 10; // max amount of weights to mutate
+        public static float neuron_mutation_chance = 0.0f; // these two should make 1f in sum
+        public static float connection_mutation_chance = 1.0f; // these two should make 1f in sum
+        public static int min_weights_mutate_count = 50; // min amount of weights to mutate
+        public static int max_weights_mutate_count = 100; // max amount of weights to mutate
         public static bool can_weights_mutate_in_different_layers = false;
 
 
@@ -68,6 +68,9 @@ namespace SimulationEvolutionForms
         //CELLS SETTINGS
         public static bool is_organics_infinite = false; // if true the organics of the cell can be as large as possible
         public static int max_organics = 100; // this variable is used if the maximum amount of organics of the cell is not infinite
+        public static bool can_organics_kill = true;
+        public static int organics_limit_value = 50;
+        public static int organics_damage = 100;
 
 
         //CONSOLE&LOG SETTINGS

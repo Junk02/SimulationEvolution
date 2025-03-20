@@ -75,6 +75,10 @@ namespace SimulationEvolution
 
         public void Action(Simulation sim) // makes an action, which depends on entity behaviour
         {
+            if (can_organics_kill && cell.organics > organics_limit_value)
+            {
+                energy -= organics_damage;
+            }
             Check();
 
             if (killed)

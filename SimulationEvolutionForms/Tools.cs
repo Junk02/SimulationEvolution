@@ -26,13 +26,19 @@ namespace SimulationEvolution
 
                 if (chance == 0)
                 {
-                    if (rnd.Next(1, 3) == 1)
+                    int choice = rnd.Next(1, 4);
+                    if (choice == 1) // input layer neuron mutation
                     {
                         network.layers[0].neurons[rnd.Next(0, network.layers[0].neurons.Count)].SetType(input_neuron_variants[rnd.Next(0, input_neuron_variants.Count)]);
                     }
-                    else
+                    else if (choice == 2) // output layer neuron mutation
                     {
                         network.layers[network.layers.Count - 1].neurons[rnd.Next(0, network.layers[network.layers.Count - 1].neurons.Count)].SetType(output_neuron_variants[rnd.Next(0, output_neuron_variants.Count)]);
+                    }
+                    else if (choice == 3) // hidden layer neuron mutation
+                    {
+                        int layer = rnd.Next(1, network.layers.Count - 1);
+                        network.layers[layer].neurons[rnd.Next(0, network.layers[layer].neurons.Count)].SetType(hidden_neuron_variants[rnd.Next(0, hidden_neuron_variants.Count)]);
                     }
                 }
                 else if (chance == 1) // this stuff doesn't work, artem try to make it next time

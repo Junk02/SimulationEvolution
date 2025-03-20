@@ -40,6 +40,8 @@
             label3 = new Label();
             richTextBox1 = new RichTextBox();
             SpawnSquareSizeTrackBar = new TrackBar();
+            label4 = new Label();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)RenderingModeTrackBar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)SpawnSquareSizeTrackBar).BeginInit();
@@ -54,16 +56,18 @@
             // pictureBox1
             // 
             pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(72, 68);
+            pictureBox1.Size = new Size(82, 91);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
             // button1
             // 
-            button1.Location = new Point(1609, 93);
+            button1.Location = new Point(1839, 124);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(92, 65);
+            button1.Size = new Size(105, 87);
             button1.TabIndex = 2;
             button1.Text = "Spawn entities";
             button1.UseVisualStyleBackColor = true;
@@ -72,27 +76,28 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(1609, 12);
+            label1.Location = new Point(1839, 16);
             label1.Name = "label1";
-            label1.Size = new Size(38, 15);
+            label1.Size = new Size(50, 20);
             label1.TabIndex = 3;
             label1.Text = "label1";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(1608, 38);
+            label2.Location = new Point(1838, 51);
             label2.Name = "label2";
-            label2.Size = new Size(38, 15);
+            label2.Size = new Size(50, 20);
             label2.TabIndex = 4;
             label2.Text = "label2";
             // 
             // ThemeCheckBox
             // 
             ThemeCheckBox.AutoSize = true;
-            ThemeCheckBox.Location = new Point(1927, 12);
+            ThemeCheckBox.Location = new Point(2202, 16);
+            ThemeCheckBox.Margin = new Padding(3, 4, 3, 4);
             ThemeCheckBox.Name = "ThemeCheckBox";
-            ThemeCheckBox.Size = new Size(97, 19);
+            ThemeCheckBox.Size = new Size(121, 24);
             ThemeCheckBox.TabIndex = 6;
             ThemeCheckBox.Text = "Ночная тема";
             ThemeCheckBox.UseVisualStyleBackColor = true;
@@ -101,18 +106,20 @@
             // RenderingModeTrackBar
             // 
             RenderingModeTrackBar.LargeChange = 1;
-            RenderingModeTrackBar.Location = new Point(1609, 180);
+            RenderingModeTrackBar.Location = new Point(1839, 240);
+            RenderingModeTrackBar.Margin = new Padding(3, 4, 3, 4);
             RenderingModeTrackBar.Maximum = 4;
             RenderingModeTrackBar.Name = "RenderingModeTrackBar";
-            RenderingModeTrackBar.Size = new Size(382, 45);
+            RenderingModeTrackBar.Size = new Size(437, 56);
             RenderingModeTrackBar.TabIndex = 7;
             RenderingModeTrackBar.ValueChanged += RenderingModeTrackBar_ValueChanged;
             // 
             // button2
             // 
-            button2.Location = new Point(1707, 93);
+            button2.Location = new Point(1951, 124);
+            button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
-            button2.Size = new Size(92, 65);
+            button2.Size = new Size(105, 87);
             button2.TabIndex = 8;
             button2.Text = "Delete all";
             button2.UseVisualStyleBackColor = true;
@@ -121,38 +128,60 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(1609, 66);
+            label3.Location = new Point(1839, 88);
             label3.Name = "label3";
-            label3.Size = new Size(38, 15);
+            label3.Size = new Size(50, 20);
             label3.TabIndex = 9;
             label3.Text = "label3";
             // 
             // richTextBox1
             // 
-            richTextBox1.Location = new Point(1609, 880);
+            richTextBox1.Location = new Point(1839, 1173);
+            richTextBox1.Margin = new Padding(3, 4, 3, 4);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
             richTextBox1.ScrollBars = RichTextBoxScrollBars.ForcedVertical;
-            richTextBox1.Size = new Size(415, 323);
+            richTextBox1.Size = new Size(474, 429);
             richTextBox1.TabIndex = 11;
             richTextBox1.Text = "";
             // 
             // SpawnSquareSizeTrackBar
             // 
             SpawnSquareSizeTrackBar.LargeChange = 1;
-            SpawnSquareSizeTrackBar.Location = new Point(1609, 231);
+            SpawnSquareSizeTrackBar.Location = new Point(1839, 308);
+            SpawnSquareSizeTrackBar.Margin = new Padding(3, 4, 3, 4);
             SpawnSquareSizeTrackBar.Minimum = 1;
             SpawnSquareSizeTrackBar.Name = "SpawnSquareSizeTrackBar";
-            SpawnSquareSizeTrackBar.Size = new Size(382, 45);
+            SpawnSquareSizeTrackBar.Size = new Size(437, 56);
             SpawnSquareSizeTrackBar.TabIndex = 12;
             SpawnSquareSizeTrackBar.Value = 1;
             SpawnSquareSizeTrackBar.ValueChanged += SpawnSquareSizeTrackBar_ValueChanged;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(1650, 51);
+            label4.Name = "label4";
+            label4.Size = new Size(50, 20);
+            label4.TabIndex = 13;
+            label4.Text = "label4";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(1650, 88);
+            label5.Name = "label5";
+            label5.Size = new Size(50, 20);
+            label5.TabIndex = 14;
+            label5.Text = "label5";
+            // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2036, 1263);
+            ClientSize = new Size(1924, 1055);
+            Controls.Add(label5);
+            Controls.Add(label4);
             Controls.Add(SpawnSquareSizeTrackBar);
             Controls.Add(richTextBox1);
             Controls.Add(label3);
@@ -165,7 +194,8 @@
             Controls.Add(pictureBox1);
             ForeColor = SystemColors.ControlText;
             KeyPreview = true;
-            MaximumSize = new Size(2052, 1302);
+            Margin = new Padding(3, 4, 3, 4);
+            MaximumSize = new Size(2343, 1720);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
@@ -191,5 +221,7 @@
         private Label label3;
         private RichTextBox richTextBox1;
         private TrackBar SpawnSquareSizeTrackBar;
+        private Label label4;
+        private Label label5;
     }
 }
