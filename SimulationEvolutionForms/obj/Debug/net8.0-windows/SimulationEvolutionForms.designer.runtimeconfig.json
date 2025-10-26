@@ -13,7 +13,8 @@
     ],
     "additionalProbingPaths": [
       "C:\\Users\\Prove\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Prove\\.nuget\\packages"
+      "C:\\Users\\Prove\\.nuget\\packages",
+      "D:\\VisualStudio\\Shared\\NuGetPackages"
     ],
     "configProperties": {
       "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": true,

@@ -31,24 +31,7 @@ namespace SimulationEvolution
                 for (int j = 0; j < cell_y; j++)
                     map[i, j] = new Cell(i, j, energy_for_photosynthesis); // start initialization of the map
 
-            int temp = start_wave_value;
-            int count = 0;
-
-            int start = (start_wave_position < cell_y) ? (start_wave_position >= 0) ? start_wave_position : 0 : 0;
-
-            for (int i = start; i < cell_y; i++) // wave photosynthesis initialization
-            {
-                for (int j = 0; j < cell_x; j++)
-                {
-                    map[j, i].energy_for_photo = temp;
-                }
-                count++;
-                temp += delta_wave_value;
-                if (count == waves_count || temp <= 0)
-                {
-                    break;
-                }
-            }
+            CalculateSun();
 
             entity_count = 0;
             simulation_turn = 0;
@@ -86,10 +69,39 @@ namespace SimulationEvolution
                         middle_energy += map[i, j].GetEntity().energy;
                     }
             simulation_turn++;
-            if (entity_count != 0)
+            middle_age = (entity_count != 0) ? middle_age /= entity_count : 0;
+            middle_energy = (entity_count != 0) ? middle_energy /= entity_count : 0;
+        }
+
+        public void CalculateSun()
+        {
+            if (start_wave_value == 0) return;
+
+            for (int i = 0; i < cell_y; i++) // wave photosynthesis initialization
             {
-                middle_age /= entity_count;
-                middle_energy /= entity_count;
+                for (int j = 0; j < cell_x; j++)
+                {
+                    map[j, i].energy_for_photo = 0;
+                }
+            }
+
+            int temp = start_wave_value;
+            int count = 0;
+
+            int start = (start_wave_position < cell_y) ? (start_wave_position >= 0) ? start_wave_position : 0 : 0;
+
+            for (int i = start; i < cell_y; i++) // wave photosynthesis initialization
+            {
+                for (int j = 0; j < cell_x; j++)
+                {
+                    map[j, i].energy_for_photo = temp;
+                }
+                count++;
+                temp += delta_wave_value;
+                if (count == waves_count || temp <= 0)
+                {
+                    break;
+                }
             }
         }
 

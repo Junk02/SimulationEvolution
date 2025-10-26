@@ -24,9 +24,9 @@ namespace SimulationEvolutionForms
         public static int max_entity_energy = 1000; // this variable is used if the maximum amount of energy of the entity is not infinite
 
         //MUTATION SETTINGS
-        public static float mutation_chance = 0.01f;
-        public static float neuron_mutation_chance = 0.0f; // these two should make 1f in sum
-        public static float connection_mutation_chance = 1.0f; // these two should make 1f in sum
+        public static float mutation_chance = 0.00f;
+        public static float neuron_mutation_chance = 0.5f; // these two should make 1f in sum
+        public static float connection_mutation_chance = 0.5f; // these two should make 1f in sum
         public static int min_weights_mutate_count = 50; // min amount of weights to mutate
         public static int max_weights_mutate_count = 100; // max amount of weights to mutate
         public static bool can_weights_mutate_in_different_layers = false;
@@ -35,9 +35,9 @@ namespace SimulationEvolutionForms
         //ENTITIES SETTINGS
         public static int standart_energy = 100;
         public static int organics_after_dying = 10;
-        public static int energy_for_staying = 10;
+        public static int energy_for_staying = 100;
         public static int energy_for_moving = 5;
-        public static int energy_for_rotating = 1;
+        public static int energy_for_rotating = 5;
         public const  int energy_for_photosynthesis = 0;
         public static int energy_for_reproduction = 50;
         public static int bite_power = 100;
@@ -60,7 +60,7 @@ namespace SimulationEvolutionForms
         public const int waves_count = 50;
         public const int start_wave_position = 50;
         public const int wave_size = 1;
-        public const int start_wave_value = waves_count;
+        public static int start_wave_value = 50;
         public static int max_wave_value;
         public const int delta_wave_value = -1;
 
@@ -68,7 +68,7 @@ namespace SimulationEvolutionForms
         //CELLS SETTINGS
         public static bool is_organics_infinite = false; // if true the organics of the cell can be as large as possible
         public static int max_organics = 100; // this variable is used if the maximum amount of organics of the cell is not infinite
-        public static bool can_organics_kill = true;
+        public static bool can_organics_kill = false;
         public static int organics_limit_value = 50;
         public static int organics_damage = 100;
 
@@ -100,6 +100,7 @@ namespace SimulationEvolutionForms
         public static bool fixed_window = true; // if true you can chage window position
         public static bool is_simulation_on_pause = false; // it true simulation on pause
         public static int mouse_square_size = 1;
+        public static int relative_difference = 1;
 
 
         //INTERFACE SETTINGS

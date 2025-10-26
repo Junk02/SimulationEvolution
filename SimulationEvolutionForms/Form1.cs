@@ -451,5 +451,18 @@ namespace SimulationEvolutionForms
                 }
             }
         }
+
+        private void MutationChanceTrackBar_Scroll(object sender, EventArgs e)
+        {
+            mutation_chance = MutationChanceTrackBar.Value / 100f;
+            label6.Text = MutationChanceTrackBar.Value.ToString();
+        }
+
+        private void SunTrackBar_Scroll(object sender, EventArgs e)
+        {
+            start_wave_value = SunTrackBar.Value;
+            sim.CalculateSun();
+            label7.Text = SunTrackBar.Value.ToString();
+        }
     }
 }

@@ -99,6 +99,7 @@ namespace SimulationEvolution
 
         public static bool IsRelatives(NeuralNetwork network1, NeuralNetwork network2)
         {
+            int count = 0;
             if (network1.layers.Count != network2.layers.Count)
             {
                 return false;
@@ -117,7 +118,11 @@ namespace SimulationEvolution
                         {
                             if (network1.layers[i].neurons[j].type != network2.layers[i].neurons[j].type)
                             {
-                                return false;
+                                count++;
+                                if (count > relative_difference)
+                                {
+                                    return false;
+                                }
                             }
                         }
                     }
@@ -131,7 +136,11 @@ namespace SimulationEvolution
                         {
                             if (network1.weights[i].weights[j][k] != network2.weights[i].weights[j][k])
                             {
-                                return false;
+                                count++;
+                                if (count > relative_difference)
+                                {
+                                    return false;
+                                }
                             }
                         }
                     }
@@ -188,9 +197,9 @@ namespace SimulationEvolution
             }
             else
             {
-                r = 255; // Красный всегда на максимум
-                g = 255; // Зелёный всегда на максимум
-                b = (int)((1 - normalizedEnergy) * 255); // Плавное уменьшение синего компонента
+                r = 255;
+                g = 255;
+                b = (int)((1 - normalizedEnergy) * 255);
             }
 
             return Color.FromArgb(r, g, b);
