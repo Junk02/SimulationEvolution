@@ -32,27 +32,24 @@ namespace SimulationEvolutionForms
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Включаем двойную буферизацию для уменьшения мерцания
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
-            // Инициализируем собственный контекст буферной графики
             myContext = new BufferedGraphicsContext();
 
-            // Получаем графику с компонента pictureBox1
             graphics = pictureBox1.CreateGraphics();
 
-            // Используем глобальный контекст буферной графики
             currentContext = BufferedGraphicsManager.Current;
 
-            // Создаём буфер на основе области отображения формы
             myBuffer = currentContext.Allocate(this.CreateGraphics(), this.DisplayRectangle);
 
             rand = new Random();
 
-
             sim = new Simulation();
 
+
             if (sim == null) MessageBox.Show("All is wrong");
+
+            LabelsInit(); // initialization of labels
 
             myBuffer.Render();
         }
@@ -65,34 +62,24 @@ namespace SimulationEvolutionForms
 
         private void SimulationTimer_Tick(object sender, EventArgs e)
         {
-            // Создаём кисть светло-серого цвета для очистки области
-            brush = new SolidBrush(Color.White);
+            ClearWindow();
 
-            // Очищаем весь экран (условно "заливка фона")
-            brush.Color = panel_color;
-            myBuffer.Graphics.FillRectangle(brush, new Rectangle(0, 0, 5000, 5000));
-            brush.Color = simulation_color;
-            myBuffer.Graphics.FillRectangle(brush, new Rectangle(0, 0, x_size, y_size));
-
-            label1.Text = $"{x_size} : {y_size}";
-
+            // Drawing border lines
             myBuffer.Graphics.DrawLine(new Pen(lines_color), 0, y_size, x_size, y_size);
             myBuffer.Graphics.DrawLine(new Pen(lines_color), x_size, 0, x_size, y_size);
-
-            string text = sim.GetSimulationTurn().ToString();
 
             if (!is_simulation_on_pause)
             {
                 sim.MakeTurn();
             }
+
             DrawEntities();
 
 
+            LogInfoAboutSimulation(); // logging info about simulation
 
-            label2.Text = "Entity count: " + sim.entity_count;
-            label3.Text = "Simulation turn: " + sim.GetSimulationTurn();
-            label4.Text = "Middle age: " + Math.Round(sim.middle_age, 3);
-            label5.Text = "Middle energy: " + Math.Round(sim.middle_energy, 3);
+            LogInfoAboutSelectedEntity(); // logging info about selected entity if there is one
+
 
             if (fixed_window) this.Location = new Point(0, 0);
             myBuffer.Render();
@@ -108,7 +95,8 @@ namespace SimulationEvolutionForms
                     {
                         if (!sim.map[i, j].IsFree())
                         {
-                            SolidBrush brush = new SolidBrush(sim.map[i, j].GetEntity().color);
+                            Entity ent = sim.map[i, j].GetEntity();
+                            SolidBrush brush = new SolidBrush(ent == selected_entity ? selected_entity_color : ent.color);
                             myBuffer.Graphics.FillRectangle(brush, new Rectangle(i * (cell_size + 1) + 1, j * (cell_size + 1) + 1, cell_size, cell_size));
                         }
                     }
@@ -193,18 +181,58 @@ namespace SimulationEvolutionForms
             if (is_night_theme)
             {
                 simulation_color = Color.White;
-                panel_color = Color.White;
+                //panel_color = Color.White; // decided that it looks weird so put it off
                 lines_color = Color.Black;
                 is_night_theme = false;
             }
             else
             {
                 simulation_color = Color.Black;
-                panel_color = Color.Black;
+                //panel_color = Color.Black;
                 lines_color = Color.White;
                 is_night_theme = true;
             }
             this.ActiveControl = null;
+        }
+
+        private void LabelsInit()
+        {
+            label1.Text = label1.Text = $"{x_size} : {y_size}";
+            label2.Text = "Entity count: ";
+            label3.Text = "Simulation turn: ";
+            label4.Text = "Middle age: ";
+            label5.Text = "Middle energy: ";
+            label8.Text = "Energy: ";
+            label9.Text = "Age: ";
+        }
+
+        private void LogInfoAboutSelectedEntity()
+        {
+            if (selected_entity != null)
+            {
+                label8.Text = "Energy: " + selected_entity.energy;
+                label9.Text = "Age: " + selected_entity.age;
+            }
+        }
+
+        private void ClearWindow()
+        {
+            // Brush for clearing
+            brush = new SolidBrush(Color.White);
+
+            // Clearing window
+            brush.Color = panel_color;
+            myBuffer.Graphics.FillRectangle(brush, new Rectangle(0, 0, 5000, 5000));
+            brush.Color = simulation_color;
+            myBuffer.Graphics.FillRectangle(brush, new Rectangle(0, 0, x_size, y_size));
+        }
+
+        private void LogInfoAboutSimulation()
+        {
+            label2.Text = "Entity count: " + sim.entity_count;
+            label3.Text = "Simulation turn: " + sim.GetSimulationTurn();
+            label4.Text = "Middle age: " + Math.Round(sim.middle_age, 3);
+            label5.Text = "Middle energy: " + Math.Round(sim.middle_energy, 3);
         }
 
         private void RenderingModeTrackBar_ValueChanged(object sender, EventArgs e)
@@ -308,13 +336,11 @@ namespace SimulationEvolutionForms
             int x_ind = (x - 1) / 8;
             int y_ind = (y - 1) / 8;
 
-            // Проверка выхода за границы поля
             if (x >= cell_x * (cell_size + 1) + 1 || y > cell_y * (cell_size + 1) + 1)
             {
                 return null;
             }
 
-            // Если попали на перегородку — округляем координаты
             if ((x - 1) % 8 == 7) x_ind = Math.Min(x_ind + 1, cell_x - 1);
             if ((y - 1) % 8 == 7) y_ind = Math.Min(y_ind + 1, cell_y - 1);
 

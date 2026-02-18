@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SimulationEvolutionForms")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5f35da4149ca58bc6343f5d2a7ae79a2b288072b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+34e461fd3a264322528a9a4628f5e1ed05f7ed93")]
 [assembly: System.Reflection.AssemblyProductAttribute("SimulationEvolutionForms")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SimulationEvolutionForms")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

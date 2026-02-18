@@ -79,6 +79,7 @@ namespace SimulationEvolutionForms
         public static Color success_console_color = Color.Green;
         public static Color warning_console_color = Color.Orange;
         public static Color error_console_color = Color.Red;
+        public static Color selected_entity_color = Color.Blue;
 
 
         //WINDOW SETTINGS
@@ -189,6 +190,8 @@ namespace SimulationEvolutionForms
          * [S]      delete all entities
          * [Z]      delete all
          * [D]      generate entities
+         * [V]      spawn entities by mouse
+         * 
          * [SPACE]  pause simulation
          * [DOWN]   reduce TurnWait
          * [UP]     increase TurnWait

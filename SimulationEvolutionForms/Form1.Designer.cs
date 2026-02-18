@@ -46,6 +46,9 @@
             label6 = new Label();
             SunTrackBar = new TrackBar();
             label7 = new Label();
+            label8 = new Label();
+            label9 = new Label();
+            label10 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)RenderingModeTrackBar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)SpawnSquareSizeTrackBar).BeginInit();
@@ -212,11 +215,41 @@
             label7.TabIndex = 18;
             label7.Text = "0";
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(1608, 390);
+            label8.Name = "label8";
+            label8.Size = new Size(38, 15);
+            label8.TabIndex = 19;
+            label8.Text = "label8";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(1608, 414);
+            label9.Name = "label9";
+            label9.Size = new Size(38, 15);
+            label9.TabIndex = 20;
+            label9.Text = "label9";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(1609, 438);
+            label10.Name = "label10";
+            label10.Size = new Size(44, 15);
+            label10.TabIndex = 21;
+            label10.Text = "label10";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2036, 1261);
+            Controls.Add(label10);
+            Controls.Add(label9);
+            Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(SunTrackBar);
             Controls.Add(label6);
@@ -269,5 +302,8 @@
         private Label label6;
         private TrackBar SunTrackBar;
         private Label label7;
+        private Label label8;
+        private Label label9;
+        private Label label10;
     }
 }
